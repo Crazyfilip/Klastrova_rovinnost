@@ -1,0 +1,73 @@
+\documentclass[12pt,a4report]{report}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm}
+\usepackage{amsmath}
+
+
+\newtheorem{def1}{Definice (minorové operace)}
+\newtheorem{poz1}{Poznámka k definici 6. minorové operace}
+\newtheorem{tvr1}{Tvrzení}
+\newtheorem{lemma1}{Lemma}
+
+\title {Minorové operace}
+
+\begin{document}
+\author{Filip Šedivý}
+\maketitle
+
+\chapter{Základní definice}
+
+Pokusný text
+
+\begin{def1}
+Minorové operace jsou následující:
+\begin{enumerate}
+\item Odebrání hrany nebo vrcholu z grafu
+\item Odebrání klastru z klastrové hierarchie
+\item Kontrakce hrany
+\begin{itemize}
+\item  pokud oba konce hrany patří do stejných klastrů
+\end{itemize}
+\item Nahrazení klastru velikosti 2 hranou
+\begin{itemize}
+\item  v nakreslené verzi problému jenom tehdy, pokud to lze provést jednoznačně
+\end{itemize}
+\item Odebrání vrcholu v z klastru K
+\begin{itemize}
+\item  K je nejmenší (vzhledem na inkluzi) klastr obsahující v
+\item z v vychází právě 1 hrana ven z K 
+\end{itemize}
+\item Sjednocení dvou disjunktní klastrů
+\begin{itemize}
+\item  Spojuje je aspoň 1 hrana
+\item Klastry nejsou podklastry jiných klastrů
+\end{itemize}
+\end{enumerate}
+\end{def1}
+
+\begin{poz1}
+S jistotou funguje, pokud je spojuje právě 1 hrana. Pro více hran to je problematické.
+\end{poz1}
+
+\begin{tvr1}
+Minorové operace (1-5) zachovávají klastrovou rovinnost
+\end{tvr1}
+\begin{proof}
+\end{proof}
+
+\begin{lemma1} Připojení vrcholu do klastru \\
+(G,C) "nakreslená" instance klastrové rovinnosti, v $\in$ V(G) a K $\in$ C \\
+C' = $(C \verb=\= \{K\}) \cup \{ K \cup \{v\} \}$
+\begin{enumerate}
+\item v sousedí s K (je spojen s nějakým vrcholem v K hranou)
+\item Každý klastr obsahující v obsahuje i K
+\item K nemá podklastry
+\item K $\cup \{v\}$ neindukuje kružnici s vrcholem mimo K uvnitř
+\end{enumerate}
+Potom (G,C) je kl. rovinný $\implies$ (G,C') je kl. rovinný
+\end{lemma1}
+\begin{proof}
+\end{proof}
+
+\end{document}

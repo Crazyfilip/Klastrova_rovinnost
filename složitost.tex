@@ -1,0 +1,33 @@
+\documentclass[12pt,a4report]{report}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm}
+\usepackage{amsmath}
+
+
+\newtheorem{tvr1}{Tvrzení}
+
+\title {Složitost}
+
+\begin{document}
+\author{Filip Šedivý}
+\maketitle
+
+Pro účely následujucího tvrzení předpokládejme, že klastr může obsahovat jediný vrchol nebo i všechny.
+\begin{tvr1}
+Maximální počet klastrů v grafu G s n (n $\geq$ 1) vrcholy je 2n-1.
+\end{tvr1}
+\begin{proof}
+Důkaz indukcí podle n: \\
+Základ indukce : n=1 \\
+Zjevně platí. \\
+Indukční předpoklad: Tvrzení platí pro $|V| <$ n.\\
+Indukční krok:  \\
+BÚNO: každý vrchol je minimálně obsažen v klastru obsahující pouze jej.
+Díky tomuto pak každý klastr, který obsahuje aspoň dva vrcholy se rozkládá aspoň na dva menší obsahující méně vrcholů. \\
+Máme graf s n vrcholy. Podle předpokladu máme klastr K obsahující všechny vrcholy. Ten obsahuje k vzájemně disjunktních podklastrů (takových, že už jediný klastr, ve kterém jsou obsaženy je K). Velikost i-tého klastru nechť je k$_{\text{i}}$ Každý z těchto klastrů obsahuje méně než n vrcholů. Platí pro ně tedy indukční předpoklad. Máme tedy: \\
+$\#$ max. počet klastrů = 1 + $\sum\limits_{i=1}^k (2*k_{\text{i}}-1) = 1 + 2*\sum\limits_{i=1}^k k_{\text{i}} - k = 2n - k + 1 $\\
+K maximalizování dojde pokud bude vždy k=2.
+\end{proof}
+
+\end{document}
