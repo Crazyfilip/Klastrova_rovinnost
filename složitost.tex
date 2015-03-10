@@ -6,14 +6,25 @@
 
 
 \newtheorem{tvr1}{Tvrzení}
-
-\title {Složitost}
+\newtheorem{tvr2}{Tvrzení}
+\newtheorem{tvr3}{Tvrzení}
+\newtheorem{tvr4}{Tvrzení}
 
 \begin{document}
 \author{Filip Šedivý}
-\maketitle
 
-Pro účely následujucího tvrzení předpokládejme, že klastr může obsahovat jediný vrchol nebo i všechny.
+
+\chapter{Složitost}
+\par
+V této kapitole ukážeme několik výsledků ohledně časové a prostorové složitosti.
+Problém klastrové rovinnosti patří do třídy NP z pohledu časové složitosti a z hlediska prostového se dá řešit v prostoru $\mathcal{O}(n)$ na deterministiském stroji. Jako výchozí model uvažujeme RAM, případně jeho nedeterministickou verzi nRAM.
+
+\section{Datová reprezentace}
+Nejprve uvedeme možnosti reprezentace klastrového grafu a ujasníme vzhledem k čemu budeme vztahovat příslušnou složitost. 
+Velikost grafu na vstupu je  $\mathcal{O}(n+m+\|C\|)$, kde C je klastrová hierarchie. 
+Jelikož graf musí být rovinný, platí pro m, že $m=\mathcal{O}(n)$.
+Nejprve musíme určit kolik klastrů se v klastrové hierarchii může nacházet.
+Pro zjednodušení budeme předpokládat, že klastr může obsahovat jediný vrchol nebo i všechny.
 \begin{tvr1}
 Maximální počet klastrů v grafu G s n (n $\geq$ 1) vrcholy je 2n-1.
 \end{tvr1}
@@ -30,4 +41,42 @@ $\#$ max. počet klastrů = 1 + $\sum\limits_{i=1}^k (2*k_{\text{i}}-1) = 1 + 2*
 K maximalizování dojde pokud bude vždy k=2.
 \end{proof}
 
+Pro reprezentaci klastrové hierarchie se nabízí dvě možnosti.
+\begin{enumerate}
+\item Seznamy vrcholů
+\item Strom, kde listy představují vrcholy a vnitřní uzly představují klastry
+\begin{itemize}
+\item Zde předpokládejme, že kořen tohoto stromu reprezentuje klastr obsahující všechny vrcholy.
+\end{itemize}
+\end{enumerate}
+
+První varianta má za následek, že klastrová hierarchie zabírá prostor až $\mathcal{O}(n^2)$. Příkladem takové klastrové hierarchie je graf, kde klastry jsou postupně do sebe vnořené. První klastr obsahuje všechny vrcholy, druhý o vrchol méně, třetí o další vrchol, ... .
+Druhá varianta naproti tomu dává prostor $\mathcal{O}(n)$. Stačí tedy určovat složitost (časovou a paměťovou) vzhledem k počtu vrcholů vstupního grafu.
+
+\section{časová složitost}
+Hlavním výsledkem této části je lineární nedeterministický algoritmus pro klastrovou rovinnost.
+\begin{tvr2}
+Problém rozhodnotí existence rovinného klastrového nakreslení patří do třídy NP.
+\end{tvr2}
+\begin{proof}
+Využíváme toho, že ekvivalentním problémem ke klastrové rovinnosti, je existence saturátoru. Ten nám zajistí, že klastry jsou souvislé. Saturátor dostaneme jako certifikát. Vzhledem k tomu, že klastrů je polynomiálně mnoho, tak ověření saturátoru se dá provést  v polynomiálním čase (Například otestování souvislosti každého klastru zvláště). Dále jsou algoritmy testují klastrovou rovinnost v polynomiálním čase (TODO doplnit reference), pokud klastry jsou souvislé. 
+\end{proof}
+
+\begin{tvr3}
+Pro problém klastrové rovinnosti je nedeterministický algoritmus, jehož časová složitost je $\mathcal{O}(n)$.
+\end{tvr3}
+\begin{proof}
+Důkaz tohoto tvrzení je pouze doplněním důkazu, že klastrová rovinnost je v NP. Pro důkaz je třeba ukázat, že umíme ověřit souvislost všech klastrů v čase $\mathcal{O}(n)$, a pak že klastrová rovinnost se dá otestovat v lineárním čase pokud jsou klastry souvislé.
+Druhá část viz (TODO doplnit reference)
+(TODO dodělat důkaz, souvislost klastrů)
+\end{proof}
+
+\section{prostorová složitost}
+Z výsledků o časové složitosti můžeme říci, že můžeme klatrovou rovinnost rozhodovat v nedeterministickém prostoru o velikosti $\mathcal{O}(n)$. Ze Savitchovy věty (doplnit ref) plyne, že v deterministickém prostoru stačí nejvýše prostor velikosti $\mathcal{O}(n^2)$.
+Lepšího výsledku, ve smyslu, že potřebujeme méně prostoru, dosáhneme využítím vztahu tříd NTIME a DSPACE, který je $NTIME(t(n)) \subseteq DSPACE(t(n))$. Jelikož máme nedeterministický algoritmus pro klastrovou rovinnost pracující v lineárním čase, tak díky předešlému víme, že na existuje deterministický algoritmus využívající pouze lineárně mnoho prostoru.
+\begin{tvr4}
+Klastrová rovinnost lze rozhodovat na RAMu s lineárně omezeným prostorem.
+\end{tvr4}
+\begin{proof}
+\end{proof}
 \end{document}
