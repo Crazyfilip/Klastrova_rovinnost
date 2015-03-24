@@ -1,33 +1,65 @@
 \documentclass[12pt,a4report]{report}
 \usepackage[czech]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{amsthm}
 \usepackage{amsmath}
+\usepackage{tikz}
+
 
 \newtheorem{main_tvrz1}{Věta}
+\newtheorem{lemma1}{Lemma}
 \newtheorem{def1}{Definice}
 \newtheorem{tvrz2}{Tvrzení}
 
-\title {Speciální instance}
-
 \begin{document}
+\author{Filip Šedivý}
 
-\maketitle
+\chapter{Speciální instance}
+V této kapitole se podíváme na omezené instance klastrové rovinnosti. Klastrová rovinnost se dá omezit dvěma způsoby. Jednak omezením, jaké grafy budeme uvažovat, a jednak omezením klastrové hierarchie. 
 
-\chapter {Kružnice s klastry velikosti 2}
-Hlavním výsledkem této části je, že ukážeme, že u této instance klastrové rovinnosti je jediný zakázaný minimální minor je šesticyklus se třemi klastry, kde vrcholy se střídají v jakém klastru jsou. (doplnit obrázek)
+\section {Kružnice s klastry velikosti 2}
+Hlavním výsledkem této části je, že ukážeme, že u této instance klastrové rovinnosti je jediný zakázaný minimální minor je šesticyklus se třemi klastry, kde vrcholy se střídají v jakém klastru jsou.
+
+\begin{tikzpicture}[main_node/.style={circle,fill=blue!20,draw,minimum size=1em,inner sep=3pt]}]
+
+    \node[main_node] (1) at (0,0) {1};
+    \node[main_node] (2) at (-1, -1.4)  {2};
+    \node[main_node] (3) at (-1, -2.8) {3};
+    \node[main_node] (4) at (0,-4.2) {1};
+    \node[main_node] (5) at (1, -2.8)  {2};
+    \node[main_node] (6) at (1, -1.4) {3};
+
+    \draw (1) -- (2) -- (3) -- (4) -- (5) -- (6) -- (1);
+\end{tikzpicture}
+
+Čísla označují, do jakého klastru vrchol patří. Dále v textu bude tento graf označován jako  $C_6^Z$, kde Z značí, že se jedná o zakázaný minor
 
 \begin{main_tvrz1}
-Instance (G,C) je klastrově rovinná $\iff$ (G,C) neobsahuje "výše uvedený šesticyklus" jako minor.
+Instance (G,C) je klastrově rovinná $\iff$ (G,C) neobsahuje $C_6^Z$ jako minor.
 \end{main_tvrz1}
 
-\begin{def1}
-Graf konfliktů \\
+Před důkazem věty ukážeme, že $C_6^Z$ není klastrově rovninný.
 
+\begin{lemma1} $C_6^Z$ není klastrově rovinný.
+\end{lemma1}
+\begin{proof}
+Důkaz provedeme pro nenakreslenou verzi. Jelikož klastry jsou velikosti 2, můžeme nahrazovat klastry hranami. Nahrazení všech klastrů hranami však vede přímo na $K_{3,3}$. A protože $K_{3,3}$ není rovinný graf, tak nemůže $C_6^Z$ klastrově rovinný.
+\end{proof}
+
+U kružnice můžou saturátorové hrany vést pouze vnitřkem nebo vnějškem (myšleno v nakreslení). Pro dvě hrany ze saturátoru má smysl se bavit o tom, zda mohou vést na stejné straně kružnice nebo nikoliv. To nás vede k pojmu grafu konfliktů, který reprezentuje konflikty mezi hranami ze saturátoru. 
+
+\begin{def1}
+Graf konfliktů je reprezentací konfliktů saturátorových hran, kde vrcholy jsou klastry a hrany představují konfliktní klastry. Klastry $\{x_1, x_2\}$ a $\{y_1, y_2\}$ mají spolu konflikt, pokud se na kružnici vyskytují v následujícím pořádí $x_1 , ..., y_1, ..., x_2, ..., y_2$ .
 \end{def1}
 
+Získáme ihned kritérium, kdy kružnice s klastry velikosti 2 je klastrově rovinný graf. Je to právě tehdy, když graf konfliktů je bipartitní. To se dá celkem snadno nahlédnout. Hrany saturátoru jedné partity povedou na jedné straně kružnice a druhé partity povedou na druhé straně. Ze znalosti saturátoru snadno rozdělíme jeho hrany do dvou partit.
+
 \begin{tvrz2}
-Graf konfliktů obsahuje lichou kružnici $\implies$ instance (G,C) obsahuje zakázaný minor
+Graf konfliktů obsahuje lichou kružnici $\implies$ instance (G,C) obsahuje zakázaný minor.
 \end{tvrz2}
+\begin{proof}
+Důkaz indukcí podle velikosti liché kružnice. V základu indukce ukážeme, že liché kružnici v grafu konfliktů odpovídá $C_6^Z$ a v indukčním kroku, pak pomocí minorových operací zredukujeme velikost podgrafu odpovídající liché kružnici o dva klastry. 
+\end{proof}
 
 \end{document}

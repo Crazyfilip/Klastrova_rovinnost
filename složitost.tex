@@ -66,8 +66,15 @@ Využíváme toho, že ekvivalentním problémem ke klastrové rovinnosti, je ex
 Pro problém klastrové rovinnosti je nedeterministický algoritmus, jehož časová složitost je $\mathcal{O}(n)$.
 \end{tvr3}
 \begin{proof}
+\par
 Důkaz tohoto tvrzení je pouze doplněním důkazu, že klastrová rovinnost je v NP. Pro důkaz je třeba ukázat, že umíme ověřit souvislost všech klastrů v čase $\mathcal{O}(n)$, a pak že klastrová rovinnost se dá otestovat v lineárním čase pokud jsou klastry souvislé.
 Druhá část viz (TODO doplnit reference)
+\par
+Prosté otestování všech klastrů zvlášť na souvislost vede na algoritmus s časovou složitostí $\mathcal{O}(n^2)$, protože klastrů je až lineárně mnoho. Pro zlepšení půjdeme cestou, kdy budeme kontrahovat hrany, to využijeme k tomu, že budeme kontrahovat vrcholy menších klastrů a postupně tak zkontrahujeme všechny klastry. Jako datovou strukturu pro klastrovou hierarchii stromovou reprezentaci.
+\par
+Při testování klastru na souvislost použijeme klasický algoritmus na testování souvislosti (po zjištění, že klastr je souvislý jej zkontrahujeme), jen hrany, které vedou ven (při průchodu si je zapamatujeme) z klastru aktualizujeme (nasměrujeme je do nového vrcholu vzniklého kontrakcí klastru). Časová složitost pro jeden klastr C je $\mathcal{O}(n_C + m_C + \#$počet hran ven z klastru), kde $n_C$ je počet vrcholů klastru a $m_C$ je počet hran mezi vrcholy klastru. Problémem je, že tohle stále vede na algoritmus s kvadratickou časovou složitostí (TODO obrázek klastrového klastru dosvědčující tuto složitost). Problémem je, že se hrany můžou aktualizovat příliš často.
+\par
+Zdánlivě jsme si nepomohli, pokud bychom dovedli aktualizaci hrany provést tak, aby jsme při příští navštěvě hrany ji zkontrahovali. To provedeme následovně: Pro každý klastr budeme mít pomocný graf, kde vrcholy představují podklastry daného klastru (maximální na inkluzi). Hrany v těchto pomocných grafy představují zase hrany jdoucí mezi klastry. Hrany se budou nastavovat jakožto ty aktualizované. Abychom mohli určit, kam aktualizovaná hrana patří, tak potřebujeme určit nejmenší klastr, který sdílejí vrcholy příslušné hrany. Navíc také potřebujeme znát podklastry, kam vrcholy patří.
 (TODO dodělat důkaz, souvislost klastrů)
 \end{proof}
 
