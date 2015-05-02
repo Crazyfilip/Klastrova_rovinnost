@@ -1,13 +1,14 @@
 \documentclass[12pt,a4report]{report}
 \usepackage[czech]{babel}
+\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{amsthm}
 \usepackage{amsmath}
 
-\newtheorem{def1}{Definice: }
-\newtheorem{def2}{Definice: }
-\newtheorem{def3}{Definice: }
-\newtheorem{def4}{Definice:}
+\usepackage{lineno}\linenumbers
+
+\newtheorem{defn}{Definice: }[chapter]
+\newtheorem{theorem}{Věta: }[chapter]
 
 \begin{document}
 \author{Filip Šedivý}
@@ -15,38 +16,53 @@
 \chapter{Úvod}
 Problém existence rovinného klastrového nakreslení grafu (dále jen klastrová rovinnost) je jedním možným zobecněním klasické grafové rovinnosti pro případ, kdy kromě vrcholů a hran máme hierarchii skupin vrcholů. Skupinu vrcholů nazýváme klastrem. Pro klastrovou rovinnost není znám polynomiální algoritmus, a není známo, zda je tento problém NP-úplný. 
 
-\begin{def1}
+\begin{defn}
 Mějme graf $G=(V,H)$. Pod klastrem C budeme uvažovat podmnožinu vrcholů  $C \subseteq V$. \\
 Klastrovou hierarchií jest množina klastrů, kde pro každé dva klastry $C_1$ a $C_2$ platí následující
 \begin{itemize}
 \item buď $C_1 \cap C_2 = \emptyset$
 \item nebo $C_1 \subset C_2$
 \end{itemize}
-Klastrový graf je dvojice $\left(G,\mathcal C\right)$, kde G je graf a $\mathcal C$ je klastrová hierarchie.
-\end{def1}
+Klastrový graf je dvojice $(G,\mathcal C)$, kde G je graf a $\mathcal C$ je klastrová hierarchie.
+\end{defn}
 
-\par
-Formálně se můžeme dívat na klastrovou hierarchii jako podmnožinu $\mathcal P \left({V}\right)$. To může vést k tomu, že bychom si mohli myslet, že klastrů může být velmi mnoho vzhledem k velikosti původního grafu. V kapitole složitost ukážeme, že počet klastrů je lineární vzhledem k počtu vrcholů grafu G. Kdyby takto nebyl omezen počet klastrů. Například kdyby mohl být počet klastrů superpolynomiální. Mohlo by to vyloučit, že klastrová rovinnost je z třídy P.
+Formálně se můžeme dívat na klastrovou hierarchii jako podmnožinu $\mathcal P (V)$. To může vést k tomu, že bychom si mohli myslet, že klastrů může být velmi mnoho vzhledem k velikosti původního grafu. V kapitole složitost ukážeme, že počet klastrů je lineární vzhledem k počtu vrcholů grafu G. V některých situacích se hodí předpokládat ze množina všech vrcholů vždy tvoří klastr a též jednotlivé vrcholy tvoří klastry. Například se hodí v důkazu o počtu klastrů se tento předpoklad.
 
 Klastrová rovinnost má dvě základní verze. A to nakreslená a nekreslená verze. Následující série definic je zachycuje formálněji.
-\begin{def2}
-Nakreslení klastru: Znázorněním klastru v rovině je topologická kružnice. Ve vnitřku kružnice leží pouze vrcholy z daného klastru a hrany grafu smí protínat hranici nakreslení klastru nejvýše jedenkrát.
-Nakreslení klastrového grafu (klastrové nakreslení): Klastrový graf $\left(G,\mathcal C\right)$ je klastrově rovinný pokud graf G je rovinný a každý klastr z $\mathcal C$ jde nakreslit, tak aby se navíc žádné dvě kružnice příslušné klastrům neprotínali.
-\end{def2}
+\begin{defn}
+Klastrové nakreslení: Pod klastrovým nakreslením rozumíme to, že vrcholy a hrany nakreslíme do roviny jako u rovinného nakreslení a navíc doplníme nakreslení klastrů. Nakreslením klastru v rovině je topologická kružnice. Ve vnitřku kružnice leží pouze vrcholy z daného klastru a hrany grafu smí protínat hranici nakreslení klastru nejvýše jedenkrát. Pro libovolné dva klastry se nesmí stát, že by se jejich nakreslení protínali.
+Klastrově rovinný graf: Klastrový graf $(G,\mathcal C)$ je klastrově rovinný pokud existuje nějaké jeho klastrové nakreslení.
+\end{defn}
 
-\par
 Omezení pro hrany v nakreslení klastru nám zaručuje, že hrany vedoucí mezi vrcholy klastru leží celé ve vnitřku nakreslení klastru. Kdyby totiž protínala kružnici, nemohla by se vrátit zpět. Podobně hrany spojující vrcholy mimo klastr musí ležet ve vnějšku. Hrana protínající nakreslenou kružnici tedy musí spojovat vrchol z klastru s vrcholem mimo klastr.
 
-\par
 Nyní máme k dispozici dostatek definic pro obě verze klastrové rovinnosti.
 
-\begin{def3}
+\begin{defn}
 \begin{itemize}
-\item Nenakreslená instance klastrové rovinnosti: Máme rozhodnout zda pro daný klastrový graf existuje libovolné klastrové nakreslení.
-\item Nakreslená instance klastrové rovinnosti: Na vstupu máme nakreslení grafu a máme rozhodnout zda lze dokreslit klastry, tak abychom obdrželi klastrové nakreslení.
+\item Nenakreslená verze klastrové rovinnosti: Máme rozhodnout zda pro daný klastrový graf existuje jeho klastrové nakreslení.
+\item Nakreslená verze klastrové rovinnosti: Na vstupu máme nakreslení grafu a klastrovou hierarchii a máme rozhodnout zda lze dokreslit klastry, tak abychom obdrželi klastrové nakreslení.
 \end{itemize}
-\end{def3}
+\end{defn}
 
 Nakreslená verze klastrové rovinnosti je už na pohled omezena silnější podmínkou a to nakreslením vstupního grafu. Pokud tedy nelze dokreslit klastry tak, abychom obdrželi klastrové nakreslení, pak klastrový graf stále může být klastrově rovinný. Viz následující příklad (TODO udělat příklad)
 
+Následující tvrzení dává kombinatorický pohled na problém klastrové rovinnosti. Napřed je potřeba definovat několik pojmů.
+\begin{defn}
+Mějme klastrový graf $(G[V,E],\mathcal C)$. Klastr K je souvislý pokud graf indukovaný na vrcholech klastru je souvislý. 
+\end{defn}
+
+\begin{defn}
+Mějme klastrový graf $(G[V,E],\mathcal C)$. Saturátor S je podmnožina ${V \choose 2} \setminus E$ taková, že každý klastr je v  $(G[V,E \cup S],\mathcal C)$ souvislý.
+\end{defn}
+
+\begin{defn}
+Mějme klastrový graf $(G[V,E],\mathcal C)$. Dírou máme na mysli kružnici v grafu takovou, že obsahuje ve své vnitřní stěně uvězěný vrchol, který napatří do stejného klastu jako kružnice.
+\end{defn}
+
+\begin{theorem}
+Klastrový graf $(G,\mathcal C)$ je klastrově rovinný právě tehdy, když existuje saturátor takový, že nevznikne žádná díra.
+\end{theorem}
+
+Klastrová rovinnost nachází aplikaci například při vizualizace různých sítí, grafů, apod., kde je potřeba seskupovat uzly (vrcholy, ...) do celků.
 \end{document}

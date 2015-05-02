@@ -1,26 +1,24 @@
 \documentclass[12pt,a4report]{report}
+\usepackage[T1]{fontenc}
 \usepackage[czech]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{amsthm}
 \usepackage{amsmath}
 
+\usepackage{lineno}\linenumbers
 
-\newtheorem{def1}{Definice (minorové operace)}
-\newtheorem{poz1}{Poznámka k definici 6. minorové operace}
-\newtheorem{tvr1}{Tvrzení}
-\newtheorem{lemma1}{Lemma}
-
-\title {Minorové operace}
+\newtheorem{defn}{Definice: }[chapter]
+\newtheorem{tvr}{Tvrzení}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
 
 \begin{document}
 \author{Filip Šedivý}
-\maketitle
 
-\chapter{Základní definice}
+\chapter{Minorové operace}
 
-Pokusný text
+V této kapitole zavedeme operace s klastrovým grafem, které zachovávají klastrovou rovinnost. V závěru kapitolu zavedeme pojem klastrové minoru jakožto
 
-\begin{def1}
+\begin{defn} (minorové operace)
 Minorové operace jsou následující:
 \begin{enumerate}
 \item Odebrání hrany nebo vrcholu z grafu
@@ -33,30 +31,50 @@ Minorové operace jsou následující:
 \begin{itemize}
 \item  v nakreslené verzi problému jenom tehdy, pokud to lze provést jednoznačně
 \end{itemize}
-\item Odebrání vrcholu v z klastru K
+\item Odebrání vrcholu v z klastru K (v nakreslené verzi)
 \begin{itemize}
 \item  K je nejmenší (vzhledem na inkluzi) klastr obsahující v
 \item z v vychází právě 1 hrana ven z K 
 \end{itemize}
-\item Sjednocení dvou disjunktní klastrů
+\item Sjednocení dvou disjunktní klastrů $K_1, K_2 \in \mathcal C$  (nakreslená verze)
 \begin{itemize}
-\item  Spojuje je aspoň 1 hrana
-\item Klastry nejsou podklastry jiných klastrů
+\item $K_1, K_2$ jsou dva minimální klastry (nemají podklastry) se společným rodičem
+\item $K_1 \cup K_2$ neindukuje kružnici s vrcholem mimo $K_1 \cup K_2$ uvnitř. Jinými slovy $K_1 \cup K_2$ nemá díru v G.
+\item existuje hrana spojující $K_1$ s $K_2$
+\item $C'  := (C\setminus \{K_1,K_2\}) \cup \{K_1 \cup K_2\}$
 \end{itemize}
 \end{enumerate}
-\end{def1}
+\end{defn}
 
-\begin{poz1}
-S jistotou funguje, pokud je spojuje právě 1 hrana. Pro více hran to je problematické.
-\end{poz1}
-
-\begin{tvr1}
-Minorové operace (1-5) zachovávají klastrovou rovinnost
-\end{tvr1}
+\begin{tvr}
+Minorové operace (1) a (2) zachovávají klastrovou rovinnost
+\end{tvr}
 \begin{proof}
+Mějme dáno klastrové nakreslení. Odebrání hrany zapříčiní jedině to, že se nemusí v daném nakreslení hrana kreslit. Podobně pro odebraný vrchol, kdy se odebereu hrany vedoucí do něj. Odebráný klastr se též prostě nenakreslí
 \end{proof}
 
-\begin{lemma1} Připojení vrcholu do klastru \\
+\begin{tvr}
+Kontrakce hrany (3) zachovává klastrovou rovinnost
+\end{tvr}
+\begin{proof}
+Mějme dáno klastrové nakreslení. Kontrakce je jen vlastně smrštění hrany do jediného bodu, jenž zastupuje vrchol vzniklý kontrakcí.
+\end{proof}
+
+\begin{tvr}
+Operace (4) zachovává klastrovou rovinnost
+\end{tvr}
+\begin{proof}
+Stačí si uvědomit, že takový klastr se chová jako hrana. V nakreslené verzi je požadavek na jednoznačnost (jen jediná stěna, kde lze hranu dokreslit), protože by jinak se mohlo stát nahrazením klastru hranou, že vznikne díra.  
+\end{proof}
+
+\begin{tvr}
+Odebraní vrcholu z klastru (5) zachovává klastrovou rovinnost.
+\end{tvr}
+\begin{proof}
+Jednoduchý překreslovací argument, kdy podél hrany protáhneme hranici klastru až ji přetáhneme přes vyjímaný vrchol. (TODO dát ilustrativní obrázek)
+\end{proof}
+
+\begin{tvr} Připojení vrcholu do klastru \\
 (G,C) "nakreslená" instance klastrové rovinnosti, v $\in$ V(G) a K $\in$ C \\
 C' = $(C \verb=\= \{K\}) \cup \{ K \cup \{v\} \}$
 \begin{enumerate}
@@ -66,8 +84,27 @@ C' = $(C \verb=\= \{K\}) \cup \{ K \cup \{v\} \}$
 \item K $\cup \{v\}$ neindukuje kružnici s vrcholem mimo K uvnitř
 \end{enumerate}
 Potom (G,C) je kl. rovinný $\implies$ (G,C') je kl. rovinný
-\end{lemma1}
+\end{tvr}
 \begin{proof}
+Toto tvrzení je speciálním případem následujícího lemmatu. Jednoduše, budeme vrchol vydávat za jednovrcholový klastr.
 \end{proof}
 
+\begin{tvr} Sjednocení klastrů (6) zachovává klastrovou rovinnost.
+\end{tvr}
+\begin{proof}
+Nechť S je minimální saturátor $(G,\mathcal C)$ takový, že $(G[V,E \cup S],\mathcal C)$ nemá díru. S je saturátorem i pro klastrový graf $(G, \mathcal C')$, kde ale může být díra.
+Nechť existuje minimální saturátor $S' \subseteq S$ takový, že  $(G[V,E \cup S'],\mathcal C)$ nemá díru. To dokážeme sporem.
+
+Nechť D je díra. Ta musí být ve sjednocení klastrů $K_1$ a $K_2$, neboť kdyby byla jinde, bylo by to ve sporu s předpokladem, že původní klastrový graf je klastrově rovinný.
+Díra D má neprázdný průnik se saturátorem S'. Kdyby průnik byl prázdný, znamenalo by to, že příslušná díra byla v původním klastrovém grafu. Označme tuto hranu $e = \{x,y\}$, kde $x$ a $y$ jsou její koncové vrcholy.
+Jako S'' označme $S' \setminus e$. Množina S'' je saturátorem, protože každý klastr $K \in C'$ obsahující vrcholy  $x$ a $y$ obsahuje i cestu $D \setminus \{e\}$. Dostali jsme tedy spor s minimalitou S'. S' tedy neobsahuje díry.
+\end{proof}
+
+(TODO vysvětlení předpokladů)
+
+Vyzbrojeni minorový operace můžeme definovat pojem klastrového minoru
+
+\begin{defn}
+Mějme klastrový graf $(G,\mathcal C)$. Klastrový graf $(G',\mathcal C')$ je klastrovým minorem, pokud jej lze získat konečnou posloupností minorových operací z klastrového grafu $(G,\mathcal C)$.
+\end{defn}
 \end{document}
