@@ -6,21 +6,23 @@
 \usepackage{amsmath}
 \usepackage{tikz}
 
+\usepackage{lineno}\linenumbers
 
-\newtheorem{main_tvrz1}{Věta}
-\newtheorem{lemma1}{Lemma}
-\newtheorem{def1}{Definice}
-\newtheorem{tvrz2}{Tvrzení}
+\newtheorem{defn}{Definice: }[chapter]
+\newtheorem{veta}{Věta}[chapter]
+\newtheorem{lemma}{Lemma: }[chapter]
+\newtheorem{tvr}{Tvrzení: }[chapter]
 
 \begin{document}
 \author{Filip Šedivý}
 
 \chapter{Speciální instance}
-V této kapitole se podíváme na omezené instance klastrové rovinnosti. Klastrová rovinnost se dá omezit dvěma způsoby. Jednak omezením, jaké grafy budeme uvažovat, a jednak omezením klastrové hierarchie. 
+V této kapitole se podíváme na omezené instance klastrové rovinnosti. Klastrová rovinnost se dá omezit dvěma způsoby. Jednak omezením, jaké grafy budeme uvažovat, a jednak omezením klastrové hierarchie. První omezenou třídou klastrových grafů jsou kružncice s klastry velikosti 2 a druhou třídou budou cesty s klastry velikosti 2. Uvedeme věty o počtu zakázaných minorů.
 
 \section {Kružnice s klastry velikosti 2}
 Hlavním výsledkem této části je, že ukážeme, že u této instance klastrové rovinnosti je jediný zakázaný minimální minor je šesticyklus se třemi klastry, kde vrcholy se střídají v jakém klastru jsou.
 
+\begin{figure}
 \begin{tikzpicture}[main_node/.style={circle,fill=blue!20,draw,minimum size=1em,inner sep=3pt]}]
 
     \node[main_node] (1) at (0,0) {1};
@@ -32,34 +34,79 @@ Hlavním výsledkem této části je, že ukážeme, že u této instance klastr
 
     \draw (1) -- (2) -- (3) -- (4) -- (5) -- (6) -- (1);
 \end{tikzpicture}
+\caption{Čísla označují, do jakého klastru vrchol patří. Dále v textu bude tento graf označován jako  $C_6^Z$, kde Z značí, že se jedná o zakázaný minor}
+\label{fig:zak_minor}
+\end{figure}
 
-Čísla označují, do jakého klastru vrchol patří. Dále v textu bude tento graf označován jako  $C_6^Z$, kde Z značí, že se jedná o zakázaný minor
 
-\begin{main_tvrz1}
-Instance (G,C) je klastrově rovinná $\iff$ (G,C) neobsahuje $C_6^Z$ jako minor.
-\end{main_tvrz1}
+
+\begin{veta}
+Instance $(G,\mathcal C)$ je klastrově rovinná $\iff$ $(G,\mathcal C)$ neobsahuje $C_6^Z$ (viz $\ref{fig:zak_minor}$) jako minor .
+\end{veta}
 
 Před důkazem věty ukážeme, že $C_6^Z$ není klastrově rovninný.
 
-\begin{lemma1} $C_6^Z$ není klastrově rovinný.
-\end{lemma1}
+\begin{lemma} 
+$C_6^Z$ není klastrově rovinný.
+\end{lemma}
 \begin{proof}
 Důkaz provedeme pro nenakreslenou verzi. Jelikož klastry jsou velikosti 2, můžeme nahrazovat klastry hranami. Nahrazení všech klastrů hranami však vede přímo na $K_{3,3}$. A protože $K_{3,3}$ není rovinný graf, tak nemůže $C_6^Z$ klastrově rovinný.
 \end{proof}
 
 U kružnice můžou saturátorové hrany vést pouze vnitřkem nebo vnějškem (myšleno v nakreslení). Pro dvě hrany ze saturátoru má smysl se bavit o tom, zda mohou vést na stejné straně kružnice nebo nikoliv. To nás vede k pojmu grafu konfliktů, který reprezentuje konflikty mezi hranami ze saturátoru. 
 
-\begin{def1}
-Graf konfliktů je reprezentací konfliktů saturátorových hran, kde vrcholy jsou klastry a hrany představují konfliktní klastry. Klastry $\{x_1, x_2\}$ a $\{y_1, y_2\}$ mají spolu konflikt, pokud se na kružnici vyskytují v následujícím pořádí $x_1 , ..., y_1, ..., x_2, ..., y_2$ .
-\end{def1}
+\begin{defn}
+Graf konfliktů je reprezentací konfliktů saturátorových hran, kde vrcholy jsou klastry a hrany představují konfliktní klastry. Klastry $\{x_1, x_2\}$ a $\{y_1, y_2\}$ mají spolu konflikt, pokud se na kružnici vyskytují v následujícím pořádí $x_1 , ..., y_1, ..., x_2, ..., y_2, ...$ .
+\end{defn}
 
-Získáme ihned kritérium, kdy kružnice s klastry velikosti 2 je klastrově rovinný graf. Je to právě tehdy, když graf konfliktů je bipartitní. To se dá celkem snadno nahlédnout. Hrany saturátoru jedné partity povedou na jedné straně kružnice a druhé partity povedou na druhé straně. Ze znalosti saturátoru snadno rozdělíme jeho hrany do dvou partit.
+Získáme ihned kritérium, kdy kružnice s klastry velikosti 2 je klastrově rovinný graf. Je to právě tehdy, když graf konfliktů je bipartitní. Dokážeme si to jako lemma.
 
-\begin{tvrz2}
-Graf konfliktů obsahuje lichou kružnici $\implies$ instance (G,C) obsahuje zakázaný minor.
-\end{tvrz2}
+\begin{lemma}Kružnice s klastry velikosti 2 je klastrově rovinná právě tehdy když graf konfliktů je bipartitní.
+\end{lemma}
 \begin{proof}
-Důkaz indukcí podle velikosti liché kružnice. V základu indukce ukážeme, že liché kružnici v grafu konfliktů odpovídá $C_6^Z$ a v indukčním kroku, pak pomocí minorových operací zredukujeme velikost podgrafu odpovídající liché kružnici o dva klastry. 
+Klastr, jenž je tvořen sousedními vrcholy zjevně nemůže být podle definice s jiným klastrem v konflitku. Vrchol příslušného klastru v grafu konfilktů je izolovaný. Stačí tedy uvažovat, že vrcholy v klastru nejsou sousedními.
+
+"$\implies$"
+Místo klastrů uvažujme hrany saturátoru, ty mohou vést buď vnitřní stěnou kružnice nebo vnější stěnou kružnice. Hrana v grafu konfliktů vede mezi jeho vrcholy právě tehdy pokud saturované hrany příslušných klastrů vedou různými stěnami. To proto, že podle definice konfliktu, kdyby vedli stejnou stěnou, tak by se museli křížit, což by byl spor s tím, že máme klastrové nakreslení. Pokud jako partity označíme klasty jež vedou buď vnější stěnou (jedna partita) nebo vnitřní stěnou (druhá partita). Izolované vrcholy dáme libovolně někam.
+
+Opačná implikace je ten samý argument jen obrácené pořadí.
 \end{proof}
+
+Uvedeme ještě jedno lemma, ukazující vztah mezi kružnicí v grafu konfliktů a odpovídající strukturou v klastrovém grafu.
+
+\begin{lemma}
+Kružnici z grafu konfliktů odpovídá v klastrovém grafu následující. Každý klastr předěluje kružnici (daný klastrový graf) na dvě části L a P. Dva klastry $K_1$ a $K_2$, které jsou s předělovým klastrem $K$ v konfliktu (v grafu konfliktů má dva sousedy, jelikož uvažujeme pouze kružnici), jsou v jedné části a zbylé klastry jsou v části druhé. (TODO vložit znázornění)
+\end{lemma}
+\begin{proof}
+Sporem předpokládejme, že v části, kde jsou klastry $K_1$ a $K_2$ je ještě jeden jiný klastr $K_3$. Uvažujme procházku z $K_1$ do $K_2$ delší cestou (tedy přes $K_3$). Prvním krokem se z $K_1$ dostaneme do druhé části. Po cestě ale musíme se vrátit zpět do první části kvůli klastru $K_3$ pomocí klastru $K_i$ dříve než se vrátíme pomocí klastru $K_2$. Klastr $K_i$ ale musí být v konfliktu s klastrem $K$, což je spor s tím, že K má jen sousedy $K_1$ a $K_2$, $K_i$ by podle všeho též musel být sousedem $K$. 
+\end{proof}
+
+\begin{tvr}
+Graf konfliktů obsahuje lichou kružnici $\implies$ instance (G,C) obsahuje zakázaný minor.
+\end{tvr}
+\begin{proof}
+Důkaz indukcí podle velikosti liché kružnice. V základu indukce ukážeme, že liché kružnici velikosti 3 v grafu konfliktů odpovídá $C_6^Z$ a v indukčním kroku, pak pomocí minorových operací zredukujeme velikost podgrafu odpovídající liché kružnici o dva klastry. 
+
+Základ indukce: Mějme trojcyklus v grafu konfliktů. Mějme příslušné klastry $\{x_1, x_2\},\{y_1, y_2\},\{z_1, z_2\}$ Podle definice konfliktů máme následující pořadí vrcholů:
+
+Podle konfliktu klastrů $\{x_1, x_2\},\{y_1, y_2\}$ je pořádí $x_1, y_1, x_2, y_2$.
+
+Podle konfliktu klastrů $\{y_1, y_2\},\{z_1, z_2\}$ je pořádí $y_1, z_1, y_2, z_2.$.
+
+Podle konfliktu klastrů $\{x_1, x_2\},\{z_1, z_2\}$ je pořádí $x_1, z_1, x_2, z_2$.
+
+Dohromady máme pořadí $x_1, y_1, z_1, x_2, y_2, z_2$, což je $C_6^Z$. Základ indukce je tedy dokázaný.
+
+Nyní předpokládejme, že chceme dokázat tvrzení pro lichou kružnici velikosti k, a že tvrzení platí pro kružnici o 2 menší.
+
+Indukční krok: Podle lemmatu 1.3 máme v $(G,\mathcal C)$ strukturu konfliktních klastrů odpovídající liché kružnici v grafu konfliktů. Pro jednoduchost předpokládejme, že jsme si $(G,\mathcal C)$ zjednodušili tak, že nemáme nic jiného než klastry získané z liché kružnice v grafu konfliktů. Provedeme následující posloupnost minorových operací. Vezměmě předělový klastr K. Klastry jenž jsou s ním v konfliktu můžeme sjednodit (ubyl jeden klastr). V části, kde měli vrchol jen oni, tak sdílejí hranu, tu můžeme po provedení sjednocení zkontrahovat. Vrchol vzniklý kontrakcí odebereme. Nyní se nám kružnice přerušila. Přes rozdělení nám vede klastr K, pro nějž máme jedinou možnost, jak jej nahradit hranou, tak to učiníme (jinými slovy, je to korektní i v nakreslené verzi). Tuto hranu můžeme rovnou zkontrahovat a vzniklý vrchol přidáme do jednoho z klastrů (opět sjednocení klastrů a ubytí druhého klastru), které s ním mají sousední vrchol. Hranu, která jej spojovala se sousedem zkontrahujeme.  Vzniklému klastrovému grafu $(G',\mathcal C')$ odpovídá v grafu konfliktů lichá kružnice o velikosti k-2. Tedy $(G',\mathcal C')$ obsahuje podle indukčního předpokladu $C_6^Z$ jako klastrový minor. A jelikož $(G',\mathcal C')$ je minorem $(G,\mathcal C)$, tak $C_6^Z$ je i minorem $(G,\mathcal C)$. Čímž je důkaz hotov. (TODO doplnit o ilustrující obrázky)
+\end{proof}
+
+Nyní již můžeme dokázat hlavní větu této sekce
+\begin{proof}
+Pokud je $(G,\mathcal C)$ klastrově rovinný, tak je to ekvivalentní tomu, že graf konfliktů je bipartitní (LEmma 1.2), což je ekvivalentní tomu, že graf konfliktů neobsahuje lichou kružnici, což je podle Lemmatu 1.3 ekvivalentní tomu, že $(G,\mathcal C)$ neobsahuje e $C_6^Z$ jako minor.
+\end{proof}
+
+\section{Cesty s klastry velikosti 2}
 
 \end{document}
