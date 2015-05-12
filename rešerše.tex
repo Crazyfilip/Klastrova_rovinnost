@@ -1,0 +1,147 @@
+\documentclass[12pt,a4report]{report}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{float}
+
+\newtheorem{theorem}{Věta}[chapter]
+
+\theoremstyle{definition}
+\newtheorem{defn}[theorem]{Definice}
+
+\begin{document}
+\author{Filip Šedivý}
+
+\chapter{Rešerše}
+V této kapitole seznámíme se známými výsledky v oblasti klastrové rovinnosti. Jedná se o výsledky, kde pro omezenou verzi klastrové rovinnosti je znám polynomiální deterministický algoritmus pro otestování klastrové rovinnosti, případně je znám i algoritmus pro nakreslení.
+
+\begin{theorem}
+Mějme klastrový graf $(G, \mathcal C)$, kde každý klastr $K \in \mathcal C$ je souvislý. Pak existuje lineární deterministický algoritmus rozhodující zda $(G, \mathcal C)$ je klastrově rovinný.
+\end{theorem}
+
+Viz \cite{CorteseEtAl08}
+
+Tento výsledek užijeme později při konstrukci lineární nedeterministického algoritmu pro obecné klastrové grafy (viz kapitola Složitost).
+
+Před uvedením dalšího výsledku uvedeme jednu definici tak zvaného úplně souvislého klastrové grafu
+
+\begin{defn}
+Klastrový graf $(G, \mathcal C)$ je \textit{úplně souvislý}, pokud pro každý klastr $K \in \mathcal C$ je $K$ souvislý a i $V \setminus K$ je souvislý.
+\end{defn}
+
+\begin{theorem}
+Úplně souvislý klastrový graf $(G, \mathcal C)$ je  klastrově rovinný $\iff$ $G$ je rovinný.
+\end{theorem}
+
+Rovinnost lze rozpoznávat v lineárním čase. A navíc je i možné získat v tomto případě v lineárním čase klastrové nakreslení.
+Viz \cite{CornelsenWagner03}
+
+\begin{theorem}
+Mějme klastrový graf $(G, \mathcal C)$ a nakreslení grafu G. Pokud každý klastr $K \in \mathcal C$ indukuje nejvýše dvě komponenty , pak existuje lineární algoritmus pro rozhodnutí, zda $(G, \mathcal C)$ je klastrově rovinný.
+\end{theorem}
+
+Viz \cite{JelinekEtAl08}
+
+\begin{theorem}
+Všechny nesouvislé klastry leží na stejné cestě začínající v koření klastrové hierarchie. Pak pro klastrový graf $(G, \mathcal C)$ lze v kvadratickém čase rozhodnout, zda je klastrově rovinný.
+\end{theorem}
+
+\begin{theorem}
+Mějme klastrový graf $(G, \mathcal C)$. Pro každý nesouvislý klastr $K \in \mathcal C$ platí, že jeho rodič a sourozenci v klastrové hierarchii jsou souvislé klastry.
+\end{theorem}
+
+Pro obě věty viz \cite{GutwengerEtAl02}
+
+\begin{theorem}
+Mějme klastrový graf $(G, \mathcal C)$. Každý nesouvislý klastr $K$ má souvislého rodiče a souvislé komponenty $K$ mají napojení mimo rodiče. Pak je algoritmus pracující v polynomiálním čase rozhodující o klastrové rovinnosti a dávající klastrové nakreslení v případě kladné odpovědi.
+\end{theorem}
+
+Viz \cite{GoodrichEtAl05}
+
+Další výsledky se týkají tak zvaných placatých klastrových grafů
+
+\begin{defn}
+Klastrový graf $(G, \mathcal C)$ je \textit{placatý} pokud všechny klastry kromě kořene (klastru obsahující všechny vrcholy) mají jako rodiče kořen (jednovrcholové klastry ignorujeme).
+\end{defn}
+
+\begin{theorem}
+Mějme placatý klastrový graf  $(G, \mathcal C)$, kde $G$ je kružnice. Pokud každý klastr obsahuje nejvýše tři vrcholy, pak lze v polynomiálním čase rozhodnout, zda je  $(G, \mathcal C)$ klastrově rovinný.
+\end{theorem}
+
+Viz \cite{JelinkovaEtAl07}
+
+\begin{theorem}
+Mějme placatý klastrový graf  $(G, \mathcal C)$, kde $G$ je kružnice. Pokud klastry jsou uspořádané do cyklu nebo cesty, pak lze v polynomiálním čase rozhodnout, zda je  $(G, \mathcal C)$ klastrově rovinný.
+\end{theorem}
+
+Viz \cite{CorteseEtAl04}
+
+\begin{theorem}
+Mějme placatý klastrový graf  $(G, \mathcal C)$, kde $G$ je kružnice. Pokud klastry jsou uspořádané do nakresleného rovinného grafu, pak lze v polynomiálním čase rozhodnout, zda je  $(G, \mathcal C)$ klastrově rovinný.
+\end{theorem}
+
+Viz \cite{CorteseEtAl09}
+
+\begin{theorem}
+Mějme placatý klastrový graf  $(G, \mathcal C)$, kde $G$ je 3-souvislý a všechny stěny mají velikost nejvýše 4, pak lze v polynomiálním čase rozhodnout, zda je  $(G, \mathcal C)$ klastrově rovinný.
+\end{theorem}
+
+Viz \cite{JelinkovaEtAl07}
+
+\begin{theorem}
+Mějme placatý klastrový graf  $(G, \mathcal C)$, kde všechny stěny mají velikost nejvýše 5 a mějme pevné nakreslení grafu $G$, pak lze v polynomiálním čase rozhodnout, zda je  $(G, \mathcal C)$ klastrově rovinný.
+\end{theorem}
+
+Viz \cite{DiBattistaFrati07}
+
+\begin{theorem}
+Mějme klastrový graf $(G, \mathcal C)$, kde klastry mají velikost nejvýše 3 (kromě kořene) a $G$ je vrcholově 3-souvislý, pak lze v polynomiálním čase rozhodnout, zda je  $(G, \mathcal C)$ klastrově rovinný. 
+\end{theorem}
+
+Viz \cite{JelinkovaEtAl07}
+
+\begin{theorem}
+Mějme klastrový graf $(G, \mathcal C)$, kde klastry mají velikost nejvýše 3 (kromě kořene) a $G$ je dělení vrcholově 3-souvislého multigrafu, který má $\mathcal O(1)$ vrcholů, a G má všechny stupně sudé , pak lze v polynomiálním čase rozhodnout, zda je  $(G, \mathcal C)$ klastrově rovinný. 
+\end{theorem}
+
+Tamtéž.
+
+% Dál nekopírovat
+
+\begin{thebibliography}{9}
+
+\bibitem{CorteseEtAl08}
+	Cortese, P.F., Di Battista, G., Frati, F., Patrignani, M., Pizzonia, M.: C-planarity of cconnected clustered graphs. J. Graph Alg. Appl. 12(2), 225–262 (2008)
+
+\bibitem{CornelsenWagner03}
+	S. Cornelsen and D. Wagner. Completely connected clustered graphs. Journal of Discrete Algorithms, 4(2):313–323, 2006.
+
+\bibitem{JelinekEtAl08}
+	V. Jelínek, E. Jelínková, J. Kratochvíl, B. Lidický: Clustered Planarity: Embedded Clustered Graphs with Two-Component Clusters (extended abstract), Proceedings of Graph Drawing 2008, LNCS 5417 (2009), 121-132
+
+\bibitem{GutwengerEtAl02}
+	Gutwenger, C., Jünger, M., Leipert, S., Mutzel, P., Percan, M., Weiskircher, R.: Advances in c-planarity testing of clustered graphs. In: Goodrich, M.T., Kobourov, S.G. (eds.) GD’02. LNCS, vol. 2528, pp. 220–235. Springer (2002)
+
+\bibitem{GoodrichEtAl05}
+	Goodrich, M.T., Lueker, G.S., Sun, J.Z.: C-planarity of extrovert clustered graphs. In: Healy,P., Nikolov, N.S. (eds.) GD’05. LNCS, vol. 3843, pp. 211–222. Springer (2006)
+
+\bibitem{JelinkovaEtAl07}
+	Jelínková, E., Kára, J., Kratochvíl, J., Pergel, M., Suchý, O., Vyskocil, T.: Clustered planarity: Small clusters in cycles and eulerian graphs. J. Graph Alg. Appl. 13(3), 379–422 (2009)
+
+\bibitem{CorteseEtAl04}P. F. Cortese, G. Di Battista, M. Patrignani, and M. Pizzonia. Clustering cycles into cycles of clusters. Journal of Graph Algorithms and Applications,
+9(3):391–413, 2005.
+
+\bibitem{CorteseEtAl09}
+	P. F. Cortese, G. Di Battista, M. Patrignani, and M. Pizzonia. On embedding a cycle in a plane graph. In Proceedings of 13th International Symposium on Graph Drawing 2005, volume 3843 of LNCS, pages 49–60. Springer, Heidelberg, 2006.
+
+\bibitem{DiBattistaFrati07}
+	Di Battista, G., Frati, F.: Efficient c-planarity testing for embedded flat clustered graphs with small faces. In: Hong, S.H., Nishizeki, T., Quan, W. (eds.) GD’07. LNCS, vol. 4875, pp. 291–302. Springer (2008)
+
+
+\end{thebibliography}
+
+
+\end{document}

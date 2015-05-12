@@ -1,0 +1,93 @@
+\chapter{Rešerše}
+V této kapitole seznámíme se známými výsledky v oblasti klastrové rovinnosti. Jedná se o výsledky, kde pro omezenou verzi klastrové rovinnosti je znám polynomiální deterministický algoritmus pro otestování klastrové rovinnosti, případně je znám i algoritmus pro nakreslení.
+
+\begin{theorem}
+Mějme klastrový graf $(G, \mathcal C)$, kde každý klastr $K \in \mathcal C$ je souvislý. Pak existuje lineární deterministický algoritmus rozhodující zda $(G, \mathcal C)$ je klastrově rovinný.
+\end{theorem}
+
+Viz \cite{CorteseEtAl08}
+
+Tento výsledek užijeme později při konstrukci lineární nedeterministického algoritmu pro obecné klastrové grafy (viz kapitola Složitost).
+
+Před uvedením dalšího výsledku uvedeme jednu definici tak zvaného úplně souvislého klastrové grafu
+
+\begin{defn}
+Klastrový graf $(G, \mathcal C)$ je \textit{úplně souvislý}, pokud pro každý klastr $K \in \mathcal C$ je $K$ souvislý a i $V \setminus K$ je souvislý.
+\end{defn}
+
+\begin{theorem}
+Úplně souvislý klastrový graf $(G, \mathcal C)$ je  klastrově rovinný $\iff$ $G$ je rovinný.
+\end{theorem}
+
+Rovinnost lze rozpoznávat v lineárním čase. A navíc je i možné získat v tomto případě v lineárním čase klastrové nakreslení.
+Viz \cite{CornelsenWagner03}
+
+\begin{theorem}
+Mějme klastrový graf $(G, \mathcal C)$ a nakreslení grafu G. Pokud každý klastr $K \in \mathcal C$ indukuje nejvýše dvě komponenty , pak existuje lineární algoritmus pro rozhodnutí, zda $(G, \mathcal C)$ je klastrově rovinný.
+\end{theorem}
+
+Viz \cite{JelinekEtAl08}
+
+\begin{theorem}
+Všechny nesouvislé klastry leží na stejné cestě začínající v koření klastrové hierarchie. Pak pro klastrový graf $(G, \mathcal C)$ lze v kvadratickém čase rozhodnout, zda je klastrově rovinný.
+\end{theorem}
+
+\begin{theorem}
+Mějme klastrový graf $(G, \mathcal C)$. Pro každý nesouvislý klastr $K \in \mathcal C$ platí, že jeho rodič a sourozenci v klastrové hierarchii jsou souvislé klastry.
+\end{theorem}
+
+Pro obě věty viz \cite{GutwengerEtAl02}
+
+\begin{theorem}
+Mějme klastrový graf $(G, \mathcal C)$. Každý nesouvislý klastr $K$ má souvislého rodiče a souvislé komponenty $K$ mají napojení mimo rodiče. Pak je algoritmus pracující v polynomiálním čase rozhodující o klastrové rovinnosti a dávající klastrové nakreslení v případě kladné odpovědi.
+\end{theorem}
+
+Viz \cite{GoodrichEtAl05}
+
+Další výsledky se týkají tak zvaných placatých klastrových grafů
+
+\begin{defn}
+Klastrový graf $(G, \mathcal C)$ je \textit{placatý} pokud všechny klastry kromě kořene (klastru obsahující všechny vrcholy) mají jako rodiče kořen (jednovrcholové klastry ignorujeme).
+\end{defn}
+
+\begin{theorem}
+Mějme placatý klastrový graf  $(G, \mathcal C)$, kde $G$ je kružnice. Pokud každý klastr obsahuje nejvýše tři vrcholy, pak lze v polynomiálním čase rozhodnout, zda je  $(G, \mathcal C)$ klastrově rovinný.
+\end{theorem}
+
+Viz \cite{JelinkovaEtAl07}
+
+\begin{theorem}
+Mějme placatý klastrový graf  $(G, \mathcal C)$, kde $G$ je kružnice. Pokud klastry jsou uspořádané do cyklu nebo cesty, pak lze v polynomiálním čase rozhodnout, zda je  $(G, \mathcal C)$ klastrově rovinný.
+\end{theorem}
+
+Viz \cite{CorteseEtAl04}
+
+\begin{theorem}
+Mějme placatý klastrový graf  $(G, \mathcal C)$, kde $G$ je kružnice. Pokud klastry jsou uspořádané do nakresleného rovinného grafu, pak lze v polynomiálním čase rozhodnout, zda je  $(G, \mathcal C)$ klastrově rovinný.
+\end{theorem}
+
+Viz \cite{CorteseEtAl09}
+
+\begin{theorem}
+Mějme placatý klastrový graf  $(G, \mathcal C)$, kde $G$ je 3-souvislý a všechny stěny mají velikost nejvýše 4, pak lze v polynomiálním čase rozhodnout, zda je  $(G, \mathcal C)$ klastrově rovinný.
+\end{theorem}
+
+Viz \cite{JelinkovaEtAl07}
+
+\begin{theorem}
+Mějme placatý klastrový graf  $(G, \mathcal C)$, kde všechny stěny mají velikost nejvýše 5 a mějme pevné nakreslení grafu $G$, pak lze v polynomiálním čase rozhodnout, zda je  $(G, \mathcal C)$ klastrově rovinný.
+\end{theorem}
+
+Viz \cite{DiBattistaFrati07}
+
+\begin{theorem}
+Mějme klastrový graf $(G, \mathcal C)$, kde klastry mají velikost nejvýše 3 (kromě kořene) a $G$ je vrcholově 3-souvislý, pak lze v polynomiálním čase rozhodnout, zda je  $(G, \mathcal C)$ klastrově rovinný. 
+\end{theorem}
+
+Viz \cite{JelinkovaEtAl07}
+
+\begin{theorem}
+Mějme klastrový graf $(G, \mathcal C)$, kde klastry mají velikost nejvýše 3 (kromě kořene) a $G$ je dělení vrcholově 3-souvislého multigrafu, který má $\mathcal O(1)$ vrcholů, a G má všechny stupně sudé , pak lze v polynomiálním čase rozhodnout, zda je  $(G, \mathcal C)$ klastrově rovinný. 
+\end{theorem}
+
+Tamtéž.

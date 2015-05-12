@@ -56,6 +56,7 @@ Opačná implikace je ten samý argument jen obrácené pořadí.
 Uvedeme ještě jedno lemma, ukazující vztah mezi kružnicí v grafu konfliktů a odpovídající strukturou v klastrovém grafu.
 
 \begin{lemma}
+\label{korespondence}
 Nechť $(G,\mathcal C)$ je klastrový graf, $G$ je kružnice a $\mathcal C$ má klastry velikosti 2. Nechť $Q$ je kružnice v grafu konfliktů $GK_{(G,\mathcal C)}$, $K={x,y}$ klastr obsažen v $Q$. Nechť $A,B$ jsou dvě cesty v $G$ spojující $x,y$ a něchť $K_1, K_2$ jsou sousedi $K$ v $Q$, pak BÚNO jediné dva vrcholy v $A$ jsou z klastrů $K_1$ a $K_2$ (po jednom vrcholu z každého klastru a zbylé vrcholy leží v $B$ .
 
 \begin{figure}[H]
@@ -105,7 +106,174 @@ Dohromady máme pořadí $x_1, y_1, z_1, x_2, y_2, z_2$, což je $C_6^Z$. Zákla
 
 Nyní předpokládejme, že chceme dokázat tvrzení pro lichou kružnici velikosti $k$, a že tvrzení platí pro kružnici o 2 menší.
 
-Indukční krok: Podle lemmatu 1.3 máme v $(G,\mathcal C)$ strukturu konfliktních klastrů odpovídající liché kružnici v grafu konfliktů. Předpokládejme, že jsme si $(G,\mathcal C)$ zjednodušili pomocí minorových operací tak, že nemáme nic jiného než klastry získané z liché kružnice v grafu konfliktů. Provedeme následující posloupnost minorových operací. Vezměmě předělový klastr $K$. Klastry jež jsou s ním v konfliktu, můžeme sjednodit (ubyl jeden klastr). V části, kde měly vrchol jen oni, tak sdílejí hranu, tu můžeme po provedení sjednocení zkontrahovat. Vrchol vzniklý kontrakcí odebereme. Nyní se nám kružnice přerušila. Přes rozdělení nám vede klastr $K$, pro nějž máme jedinou možnost, jak jej nahradit hranou, tak to učiníme (jinými slovy, je to korektní i v nakreslené verzi). Tuto hranu můžeme rovnou zkontrahovat a vzniklý vrchol přidáme do jednoho z klastrů (opět sjednocení klastrů a ubytí druhého klastru), které s ním mají sousední vrchol. Hranu, která jej spojovala se sousedem zkontrahujeme.  Vzniklému klastrovému grafu $(G',\mathcal C')$ odpovídá v grafu konfliktů lichá kružnice o velikosti $k-2$. Tedy $(G',\mathcal C')$ obsahuje podle indukčního předpokladu $C_6^Z$ jako klastrový minor. A jelikož $(G',\mathcal C')$ je minorem $(G,\mathcal C)$, tak $C_6^Z$ je i minorem $(G,\mathcal C)$, čímž je důkaz hotov. (TODO doplnit o ilustrující obrázky)
+Indukční krok: Podle lemmatu \ref{korespondence} máme v $(G,\mathcal C)$ strukturu konfliktních klastrů odpovídající liché kružnici v grafu konfliktů. Předpokládejme, že jsme si $(G,\mathcal C)$ zjednodušili pomocí minorových operací tak, že nemáme nic jiného než klastry získané z liché kružnice v grafu konfliktů.
+
+\begin{figure}[H]
+\begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=2em,inner sep=3pt]}]
+
+    \node[node] (1) at (0,0) {$K$};
+    \node[node] (2) at (-1, -1.4)  {$K_1$};
+    \node[node] (3) at (-1, -2.8) {$K_2$};
+    \node[node] (4) at (0,-4.2) {$K$};
+    \node[node] (5) at (5.5, 0) {$K_1$};
+    \node[node] (6) at (5.5,-4.2) {$K_2$};
+    \node[node] (7) at (1.5, 0) {$v_1$};
+    \node[node] (8) at (1.5,-4.2) {$v_2$};
+
+    \draw (7) -- (1) -- (2) -- (3) -- (4) -- (8) ;
+    \draw (1.9,0) -- (2.25,0);
+    \draw[dashed] (2.25, 0) -- (4.5,0);
+    \draw (4.5,0) -- (5.05,0);
+    \draw (1.9,-4.2) -- (2.25,-4.2);
+    \draw[dashed] (2.25, -4.2) -- (4.5,-4.2);
+    \draw (4.5,-4.2) -- (5.05,-4.2);
+    \draw (5.8,-0.3) -- (6.4,-0.8);
+    \draw (5.8,-3.9) -- (6.4,-3.4);
+    \draw[dashed]  (6.4,-3.4) --  (6.4,-0.8);
+
+\end{tikzpicture}
+\caption{Výchozí stav, $v_1, v_2$ jsou sousedé vrcholů klastru $K$}
+\end{figure}
+
+Provedeme následující posloupnost minorových operací. Vezměmě předělový klastr $K$. Klastry jež jsou s ním v konfliktu ($K_1$ a $K_2)$, můžeme sjednodit (ubyl jeden klastr). Sjednocený klastr označme $K_S$
+
+\begin{figure}[H]
+\begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=2em,inner sep=3pt]}]
+
+    \node[node] (1) at (0,0) {$K$};
+    \node[node] (2) at (-1, -1.2)  {$K_S$};
+    \node[node] (3) at (-1, -3.0) {$K_S$};
+    \node[node] (4) at (0,-4.2) {$K$};
+    \node[node] (5) at (5.5, 0) {$K_1$};
+    \node[node] (6) at (5.5,-4.2) {$K_2$};
+    \node[node] (7) at (1.5, 0) {$v_1$};
+    \node[node] (8) at (1.5,-4.2) {$v_2$};
+
+    \draw (7) -- (1) -- (2) to node [auto] {$e$} (3) -- (4)  -- (8);
+    \draw (1.9,0) -- (2.25,0);
+    \draw[dashed] (2.25, 0) -- (4.5,0);
+    \draw (4.5,0) -- (5.05,0);
+    \draw (1.9,-4.2) -- (2.25,-4.2);
+    \draw[dashed] (2.25, -4.2) -- (4.5,-4.2);
+    \draw (4.5,-4.2) -- (5.05,-4.2);
+    \draw (5.8,-0.3) -- (6.4,-0.8);
+    \draw (5.8,-3.9) -- (6.4,-3.4);
+    \draw[dashed]  (6.4,-3.4) --  (6.4,-0.8);
+
+\end{tikzpicture}
+\caption{Sjednodcení klastrů $K_1$ a $K_2$}
+\end{figure}
+
+ V části, kde měly vrchol jen oni, tak sdílejí hranu $e$, tu můžeme po provedení sjednocení zkontrahovat.
+
+\begin{figure}[H]
+\begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=2em,inner sep=3pt]}]
+
+    \node[node] (1) at (0,0) {$K$};
+    \node[node] (2) at (-1, -1.5)  {$K_S$};
+    \node[node] (4) at (0,-3.0) {$K$};
+    \node[node] (5) at (5.5, 0) {$K_1$};
+    \node[node] (6) at (5.5,-3.0) {$K_2$};
+    \node[node] (7) at (1.5, 0) {$v_1$};
+    \node[node] (8) at (1.5,-3.0) {$v_2$};
+
+    \draw (7) -- (1) -- (2) -- (4)  -- (8);
+    \draw (1.9,0) -- (2.25,0);
+    \draw[dashed] (2.25, 0) -- (4.5,0);
+    \draw (4.5,0) -- (5.05,0);
+    \draw (1.9,-3.0) -- (2.25,-3.0);
+    \draw[dashed] (2.25, -3.0) -- (4.5,-3.0);
+    \draw (4.5,-3.0) -- (5.05,-3.0);
+    \draw (5.8,-0.3) -- (6.4,-0.8);
+    \draw (5.8,-2.7) -- (6.4,-2.2);
+    \draw[dashed]  (6.4,-2.2) --  (6.4,-0.8);
+
+
+\end{tikzpicture}
+\caption{Kontrakce hrany $e$}
+\end{figure}
+
+ Vrchol vzniklý kontrakcí odebereme. Nyní se nám kružnice přerušila.
+
+\begin{figure}[H]
+\begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=2em,inner sep=3pt]}]
+
+    \node[node] (1) at (0,0) {$K$};
+    \node[node] (4) at (0,-3.0) {$K$};
+    \node[node] (5) at (5.5, 0) {$K_1$};
+    \node[node] (6) at (5.5,-3.0) {$K_2$};
+    \node[node] (7) at (1.5, 0) {$v_1$};
+    \node[node] (8) at (1.5,-3.0) {$v_2$};
+
+    \draw (7) -- (1);
+    \draw (4) -- (8);
+    \draw (1.9,0) -- (2.25,0);
+    \draw[dashed] (2.25, 0) -- (4.5,0);
+    \draw (4.5,0) -- (5.05,0);
+    \draw (1.9,-3.0) -- (2.25,-3.0);
+    \draw[dashed] (2.25, -3.0) -- (4.5,-3.0);
+    \draw (4.5,-3.0) -- (5.05,-3.0);
+    \draw (5.8,-0.3) -- (6.4,-0.8);
+    \draw (5.8,-2.7) -- (6.4,-2.2);
+    \draw[dashed]  (6.4,-2.2) --  (6.4,-0.8);
+
+\end{tikzpicture}
+\caption{Odebrání vrcholu vzniklého kontrakcí}
+\end{figure}
+
+ Přes rozdělení nám vede klastr $K$, pro nějž máme jedinou možnost, jak jej nahradit hranou, tak to učiníme (jinými slovy, je to korektní i v nakreslené verzi).
+
+\begin{figure}[H]
+\begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=2em,inner sep=3pt]}]
+
+    \node[node] (1) at (0,0) {};
+    \node[node] (4) at (0,-3.0) {};
+    \node[node] (5) at (5.5, 0) {$K_1$};
+    \node[node] (6) at (5.5,-3.0) {$K_2$};
+    \node[node] (7) at (1.5, 0) {$v_1$};
+    \node[node] (8) at (1.5,-3.0) {$v_2$};
+
+    \draw (7) -- (1) -- (4) -- (8);
+    \draw (1.9,0) -- (2.25,0);
+    \draw[dashed] (2.25, 0) -- (4.5,0);
+    \draw (4.5,0) -- (5.05,0);
+    \draw (1.9,-3.0) -- (2.25,-3.0);
+    \draw[dashed] (2.25, -3.0) -- (4.5,-3.0);
+    \draw (4.5,-3.0) -- (5.05,-3.0);
+    \draw (5.8,-0.3) -- (6.4,-0.8);
+    \draw (5.8,-2.7) -- (6.4,-2.2);
+    \draw[dashed]  (6.4,-2.2) --  (6.4,-0.8);
+
+\end{tikzpicture}
+\caption{Nahrazení klastru K hranou}
+\end{figure}
+
+ Tuto hranu můžeme rovnou zkontrahovat a vzniklý vrchol přidáme do jednoho z klastrů (opět sjednocení klastrů a ubytí druhého klastru), které s ním mají sousední vrchol. Hranu, která jej spojovala se sousedem zkontrahujeme.
+
+\begin{figure}[H]
+\begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=2em,inner sep=3pt]}]
+
+    \node[node] (5) at (5.5, 0) {$K_1$};
+    \node[node] (6) at (5.5,-3.0) {$K_2$};
+    \node[node] (7) at (1.5, 0) {$v_1$};
+    \node[node] (8) at (1.5,-3.0) {$v_2$};
+
+    \draw (7) -- (8);
+    \draw (1.9,0) -- (2.25,0);
+    \draw[dashed] (2.25, 0) -- (4.5,0);
+    \draw (4.5,0) -- (5.05,0);
+    \draw (1.9,-3.0) -- (2.25,-3.0);
+    \draw[dashed] (2.25, -3.0) -- (4.5,-3.0);
+    \draw (4.5,-3.0) -- (5.05,-3.0);
+    \draw (5.8,-0.3) -- (6.4,-0.8);
+    \draw (5.8,-2.7) -- (6.4,-2.2);
+    \draw[dashed]  (6.4,-2.2) --  (6.4,-0.8);
+
+\end{tikzpicture}
+\caption{Výsledný klastrový graf}
+\end{figure}
+
+  Vzniklému klastrovému grafu $(G',\mathcal C')$ odpovídá v grafu konfliktů lichá kružnice o velikosti $k-2$. Tedy $(G',\mathcal C')$ obsahuje podle indukčního předpokladu $C_6^Z$ jako klastrový minor. A jelikož $(G',\mathcal C')$ je minorem $(G,\mathcal C)$, tak $C_6^Z$ je i minorem $(G,\mathcal C)$, čímž je důkaz hotov. (TODO doplnit o ilustrující obrázky)
 \end{proof}
 
 Nyní již můžeme dokázat hlavní větu této sekce
