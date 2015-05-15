@@ -20,7 +20,7 @@
 
 \begin{document}
 \author{Filip Šedivý}
-
+\pagenumbering{gobble}
 \begin{center}
 
 \large
@@ -80,7 +80,7 @@ s~použitím citovaných pramenů, literatury a dalších odborných zdrojů.
 \medskip\noindent
 Beru na~vědomí, že se na moji práci vztahují práva a povinnosti vyplývající
 ze zákona č. 121/2000 Sb., autorského zákona v~platném znění, zejména skutečnost,
-že Univerzita Karlova v Praze má právo na~uzavženíí licenční smlouvy o~užití této
+že Univerzita Karlova v Praze má právo na~uzavžení licenční smlouvy o~užití této
 práce jako školního díla podle § 60 odst. 1 autorského zákona.
 
 \vspace{10mm}
@@ -93,8 +93,6 @@ Podpis autora
 
 \vspace{20mm}
 \newpage
-
-
 
 \vbox to 0.5\vsize{
 \setlength\parindent{0mm}
@@ -109,16 +107,17 @@ Filip Šedivý
 Katedra / Ústav:  Informatický ústav Univerzity Karlovy
 
 Vedoucí bakalářské práce:
-RNDr. Jelínek Vít, Ph.D. , Informatický ústav Univerzity Karlovy
+RNDr. Jelínek Vít, Ph.D., Informatický ústav Univerzity Karlovy
 
 Abstrakt:
 \input{abstrakt.tex}
 
+
 Klíčová slova: Klastrová rovinnost, klastrové minory, výpočetní složitost, charakterizace minimálních klastrových grafů bez nakreslení
 
+\vss}
 \newpage
-
-\vss}\nobreak\vbox to 0.49\vsize{
+\vbox to 0.49\vsize{
 \setlength\parindent{0mm}
 \setlength\parskip{5mm}
 
@@ -132,10 +131,11 @@ Department:
 Computer Science Institute of Charles University
 
 Supervisor:
-RNDr. Jelínek Vít, Ph.D. , Computer Science Institute of Charles University
+RNDr. Jelínek Vít, Ph.D., Computer Science Institute of Charles University
 
 Abstract:
 \input{abstrakt-en.tex}
+
 
 Keywords:
 Clustered planarity, clustered minors, computational complexity, characterization of minimal clustered graphs without embedding
@@ -146,16 +146,19 @@ Clustered planarity, clustered minors, computational complexity, characterizatio
 
 
 \pagestyle{plain}
-\setcounter{page}{1}
 \tableofcontents
 
 \newpage
+
+\pagenumbering{arabic}
+
 
 \input{úvod.tex}
 \input{reserse.tex}
 \input{slozitost.tex}
 \input{minor_op.tex}
 \input{speciální_instance.tex}
+\input{zaver.tex}
 \input{literatura.tex}
 
 \end{document}
