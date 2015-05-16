@@ -21,12 +21,13 @@
 \author{Filip Šedivý}
 
 \chapter{Speciální instance}
-V této kapitole se podíváme na omezené instance klastrové rovinnosti. Klastrová rovinnost se dá omezit dvěma způsoby. Jednak omezením, jaké grafy budeme uvažovat, a jednak omezením klastrové hierarchie. První omezenou třídou klastrových grafů jsou kružnice s klastry velikosti 2 a druhou třídou budou cesty s klastry velikosti 2. Uvedeme věty o počtu zakázaných minorů.
+V této kapitole se podíváme na omezené instance klastrové rovinnosti. Klastrová rovinnost se dá omezit dvěma způsoby, jednak omezením o jakých grafech budeme uvažovat, a jednak omezením klastrové hierarchie. První omezenou třídou klastrových grafů jsou kružnice s klastry velikosti 2 a druhou třídou budou cesty s klastry velikosti 2. Pro oba případy uvedeme věty o počtu zakázaných minorů.
 
 \section {Kružnice s klastry velikosti 2}
 Hlavním výsledkem této části je výsledek ukazující, že jediným zakázaným minimálním minorem pro kružnice s klastry velikosti 2 je šesticyklus se třemi klastry, kde se vrcholy střídají v jakém klastru jsou (viz obrázek \ref{fig:zak_minor}). Výsledek je jak pro nakreslenou, tak i nenakreslenou verzi, protože kružnice má až na symetrii jen jedno nakreslení.
 
 \begin{figure}
+\centering
 \begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=1em,inner sep=3pt]}]
 
     \node[node] (1) at (0,0) {1};
@@ -38,12 +39,12 @@ Hlavním výsledkem této části je výsledek ukazující, že jediným zakáza
 
     \draw (1) -- (2) -- (3) -- (4) -- (5) -- (6) -- (1);
 \end{tikzpicture} 
-\caption{Čísla označují, do jakého klastru vrchol patří. Dále v textu bude tento graf označován jako  $C_6^Z$, kde $Z$ značí, že se jedná o zakázaný minor}
+\caption{Čísla označují, do jakého klastru vrchol patří. Dále v textu bude tento graf označován jako  $C_6^Z$, kde $Z$ značí, že se jedná o zakázaný minor.}
 \label{fig:zak_minor}
 \end{figure}
 
 \begin{theorem}
-\label{hlavni_veta}Nechť $(G, \mathcal C)$ je instance, kde G je kružnice a všechny klastry mají velikost 2. $(G,\mathcal C)$ je klastrově rovinný $\iff$ $(G,\mathcal C)$ neobsahuje $C_6^Z$ jako minor .
+\label{hlavni_veta}Nechť $(G, \mathcal C)$ je instance, kde G je kružnice a všechny klastry mají velikost 2. $(G,\mathcal C)$ je klastrově rovinný $\iff$ $(G,\mathcal C)$ neobsahuje $C_6^Z$ jako minor.
 \end{theorem}
 
 Před důkazem věty ukážeme, že $C_6^Z$ není klastrově rovninný.
@@ -53,7 +54,7 @@ Před důkazem věty ukážeme, že $C_6^Z$ není klastrově rovninný.
 $C_6^Z$ není klastrově rovinný.
 \end{lemma}
 \begin{proof}
-Důkaz provedeme pro nenakreslenou verzi. Jelikož klastry jsou velikosti 2, můžeme nahrazovat klastry hranami. Nahrazení všech klastrů hranami však vede přímo na $K_{3,3}$. A protože $K_{3,3}$ není rovinný graf, tak nemůže $C_6^Z$ klastrově rovinný.
+Důkaz provedeme pro nenakreslenou verzi. Jelikož klastry jsou velikosti 2, můžeme nahrazovat klastry hranami. Nahrazení všech klastrů hranami však vede přímo na $K_{3,3}$. A protože $K_{3,3}$ není rovinný graf, tak nemůže $C_6^Z$ být klastrově rovinný.
 \end{proof}
 
 U kružnice můžou saturátorové hrany vést pouze vnitřkem nebo vnějškem (myšleno v nakreslení). Pro dvě hrany ze saturátoru má smysl se bavit o tom, zda mohou vést na stejné straně kružnice nebo nikoliv. To nás vede k pojmu grafu konfliktů, který reprezentuje konflikty mezi hranami ze saturátoru. 
@@ -71,7 +72,7 @@ Klastr, jenž je tvořen sousedními vrcholy, zjevně nemůže být podle defini
 
 $\implies$
 
-Místo klastrů uvažujme hrany saturátoru, ty mohou vést buď vnitřní stěnou kružnice nebo vnější stěnou kružnice. Hrana v grafu konfliktů vede mezi jeho vrcholy právě tehdy pokud saturované hrany příslušných klastrů vedou různými stěnami. To proto, že podle definice konfliktu, kdyby vedly stejnou stěnou, tak by se musely křížit, což by byl spor s tím, že máme klastrové nakreslení. Jako partity označíme klastry, jež vedou buď vnější stěnou (jedna partita) nebo vnitřní stěnou (druhá partita). Izolované vrcholy dáme libovolně partity.
+Místo klastrů uvažujme hrany saturátoru, ty mohou vést, buď vnitřní stěnou kružnice, nebo vnější stěnou kružnice. Hrana v grafu konfliktů vede mezi jeho vrcholy právě tehdy, pokud saturované hrany příslušných klastrů vedou různými stěnami. To proto, že podle definice konfliktu, kdyby vedly stejnou stěnou, tak by se musely křížit, což by byl spor s tím, že máme klastrové nakreslení. Jako partity označíme klastry, jež vedou, buď vnější stěnou (jedna partita), nebo vnitřní stěnou (druhá partita). Izolované vrcholy dáme libovolně partity.
 
 Opačná implikace se dokáže obdobně.
 \end{proof}
@@ -83,6 +84,7 @@ Uvedeme ještě jedno lemma, ukazující vztah mezi kružnicí v grafu konflikt�
 Nechť $(G,\mathcal C)$ je klastrový graf, $G$ je kružnice a $\mathcal C$ má klastry velikosti 2. Nechť $Q$ je indukovaná kružnice v grafu konfliktů $GK_{(G,\mathcal C)}$ a nechť $K=\{x,y\}$ klastr obsažený v $Q$. Nechť $A,B$ jsou dvě cesty v $G$ spojující $x,y$ a $K_1, K_2$ jsou sousedi $K$ v $Q$. Když se omezíme na vrcholy klastrů z $Q$, pak BÚNO jediné dva vrcholy v $A$ jsou z klastrů $K_1$ a $K_2$ (po jednom vrcholu z každého klastru a zbylé vrcholy leží v $B$.
 
 \begin{figure}[H]
+\centering
 \begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=1em,inner sep=3pt]}]
 
     \node[node] (1) at (0,0) {x};
@@ -105,9 +107,9 @@ Nechť $(G,\mathcal C)$ je klastrový graf, $G$ je kružnice a $\mathcal C$ má 
 \caption{Znázornění, čemu odpovídá kružnice v grafu konfliktů. Nalevo od $K$ je část $A$, napravo je část $B$.}
 \end{figure}
 \end{lemma}
-Struktura v klastrovém grafu, která odpovídá kružnici v grafu konfliktů se jinými slovy \uv{chová slušně a není divoce rozházená po grafu}.
+Struktura v klastrovém grafu, která odpovídá kružnici v grafu konfliktů, se jinými slovy \uv{chová slušně a není divoce rozházená po grafu}.
 \begin{proof}
-Sporem předpokládejme, že v části $A$, kde klastry $K_1$ a $K_2$ mají po jednom vrcholu, je ještě jeden jiný klastr $K_3$. Ten musí mít v $A$ oba své vrcholy, jinak by byl v konfliktu s $K$, což je spor s tím, že $K$ má jen dva sousedy v $Q$. Uvažujme cestu v $Q$ z $K_1$ do $K_2$ neobsahující $K$ (tedy přes $K_3$). Prvním krokem se z $K_1$ dostaneme do druhé části. Po cestě ale musíme se vrátit zpět do první části kvůli klastru $K_3$ pomocí klastru $K_i$ dříve, než se vrátíme pomocí klastru $K_2$. Klastr $K_i$ ale musí být v konfliktu s klastrem $K$, což je spor s tím, že K má jen sousedy $K_1$ a $K_2$, $K_i$ by podle všeho též musel být sousedem $K$. 
+Sporem předpokládejme, že v části $A$, kde klastry $K_1$ a $K_2$ mají po jednom vrcholu, je ještě jeden jiný klastr $K_3$. Ten musí mít v $A$ oba své vrcholy, jinak by byl v konfliktu s $K$, což je spor s tím, že $K$ má jen dva sousedy v $Q$. Uvažujme cestu v $Q$ z $K_1$ do $K_2$ neobsahující $K$ (tedy přes $K_3$). Prvním krokem se z $K_1$ dostaneme do druhé části. Po cestě se ale musíme vrátit zpět do části $A$ kvůli klastru $K_3$ pomocí klastru $K_i$ dříve, než se vrátíme pomocí klastru $K_2$. Klastr $K_i$ ale musí být v konfliktu s klastrem $K$, což je spor s tím, že K má jen sousedy $K_1$ a $K_2$, $K_i$ by podle všeho též musel být sousedem $K$. 
 \end{proof}
 
 \begin{tvr}
@@ -117,11 +119,11 @@ Graf konfliktů $GK_{(G, \mathcal C)}$ obsahuje lichou kružnici $\implies$ inst
 \begin{proof}
 Důkaz indukcí podle velikosti nejkratší liché kružnice v $GK_{(G, \mathcal C)}$. V základu indukce ukážeme, že liché kružnici velikosti 3 v grafu konfliktů odpovídá $C_6^Z$. V indukčním kroku pak pomocí minorových operací zredukujeme délku liché kružnice o dva klastry. 
 
-Základ indukce: Mějme trojcyklus v grafu konfliktů. Mějme příslušné klastry $\{x_1, x_2\},\{y_1, y_2\},\{z_1, z_2\}$ Podle definice konfliktů máme následující pořadí vrcholů:
+Základ indukce: Mějme trojcyklus v grafu konfliktů. Mějme příslušné klastry $\{x_1, x_2\},\{y_1, y_2\},\{z_1, z_2\}$. Podle definice konfliktů máme následující pořadí vrcholů:
 
 Podle konfliktu klastrů $\{x_1, x_2\},\{y_1, y_2\}$ je pořadí $x_1, y_1, x_2, y_2$.
 
-Podle konfliktu klastrů $\{y_1, y_2\},\{z_1, z_2\}$ je pořadí $y_1, z_1, y_2, z_2.$.
+Podle konfliktu klastrů $\{y_1, y_2\},\{z_1, z_2\}$ je pořadí $y_1, z_1, y_2, z_2$.
 
 Podle konfliktu klastrů $\{x_1, x_2\},\{z_1, z_2\}$ je pořadí $x_1, z_1, x_2, z_2$.
 
@@ -132,6 +134,7 @@ Nyní předpokládejme, že chceme dokázat tvrzení pro lichou kružnici veliko
 Indukční krok: Podle lemmatu \ref{korespondence} máme v $(G,\mathcal C)$ strukturu konfliktních klastrů odpovídající liché kružnici v grafu konfliktů. Předpokládejme, že jsme si $(G,\mathcal C)$ zjednodušili pomocí minorových operací tak, že nemáme nic jiného než klastry získané z liché kružnice v grafu konfliktů.
 
 \begin{figure}[H]
+\centering
 \begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=2em,inner sep=3pt]}]
 
     \node[node] (1) at (0,0) {$K$};
@@ -155,12 +158,13 @@ Indukční krok: Podle lemmatu \ref{korespondence} máme v $(G,\mathcal C)$ stru
     \draw[dashed]  (6.4,-3.4) --  (6.4,-0.8);
 
 \end{tikzpicture}
-\caption{Výchozí stav, $v_1, v_2$ jsou sousedé vrcholů klastru $K$}
+\caption{Výchozí stav, $v_1, v_2$ jsou sousedé vrcholů klastru $K$.}
 \end{figure}
 
-Provedeme následující posloupnost minorových operací. Vezměmě libovolný klastr $K$. Klastry jež jsou s ním v konfliktu ($K_1$ a $K_2)$, můžeme sjednodit (ubyl jeden klastr). Sjednocený klastr označme $K_S$
+Provedeme následující posloupnost minorových operací. Vezměme libovolný klastr $K$. Klastry jež jsou s ním v konfliktu ($K_1$ a $K_2)$, můžeme sjednodit (ubyl jeden klastr). Sjednocený klastr označme $K_S$.
 
 \begin{figure}[H]
+\centering
 \begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=2em,inner sep=3pt]}]
 
     \node[node] (1) at (0,0) {$K$};
@@ -187,9 +191,10 @@ Provedeme následující posloupnost minorových operací. Vezměmě libovolný 
 \caption{Sjednodcení klastrů $K_1$ a $K_2$}
 \end{figure}
 
- V části, kde měly vrchol jen oni, tak sdílejí hranu $e$, tu můžeme po provedení sjednocení zkontrahovat.
+ V části, kde měly vrchol jen ony, tak sdílejí hranu $e$, tu můžeme po provedení sjednocení zkontrahovat.
 
 \begin{figure}[H]
+\centering
 \begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=2em,inner sep=3pt]}]
 
     \node[node] (1) at (0,0) {$K$};
@@ -219,6 +224,7 @@ Provedeme následující posloupnost minorových operací. Vezměmě libovolný 
  Vrchol vzniklý kontrakcí odebereme. Nyní se nám kružnice přerušila.
 
 \begin{figure}[H]
+\centering
 \begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=2em,inner sep=3pt]}]
 
     \node[node] (1) at (0,0) {$K$};
@@ -247,6 +253,7 @@ Provedeme následující posloupnost minorových operací. Vezměmě libovolný 
  Přes rozdělení nám vede klastr $K$, pro nějž máme jedinou možnost, jak jej nahradit hranou, tak to učiníme (jinými slovy, je to korektní i v nakreslené verzi).
 
 \begin{figure}[H]
+\centering
 \begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=2em,inner sep=3pt]}]
 
     \node[node] (1) at (0,0) {};
@@ -274,6 +281,7 @@ Provedeme následující posloupnost minorových operací. Vezměmě libovolný 
  Tuto hranu můžeme rovnou zkontrahovat a vzniklý vrchol přidáme do jednoho z klastrů (opět sjednocení klastrů a ubytí druhého klastru), které s ním mají sousední vrchol. Hranu, která jej spojovala se sousedem zkontrahujeme.
 
 \begin{figure}[H]
+\centering
 \begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=2em,inner sep=3pt]}]
 
     \node[node] (5) at (5.5, 0) {$K_S$};
@@ -299,8 +307,8 @@ Provedeme následující posloupnost minorových operací. Vezměmě libovolný 
   Vzniklému klastrovému grafu $(G',\mathcal C')$ odpovídá v grafu konfliktů lichá kružnice o velikosti $k-2$. Tedy $(G',\mathcal C')$ obsahuje podle indukčního předpokladu $C_6^Z$ jako klastrový minor. A jelikož $(G',\mathcal C')$ je minorem $(G,\mathcal C)$, tak $C_6^Z$ je i minorem $(G,\mathcal C)$, čímž je důkaz hotov.
 \end{proof}
 
-Nyní již můžeme dokázat hlavní větu této sekce
-\begin{proof} věty \ref{hlavni_veta}. 
+Nyní již můžeme dokázat hlavní větu této sekce.
+\begin{proof}[Důkaz Věty \ref{hlavni_veta}]. 
 
 $\implies$ \\
 Pokud je $(G, \mathcal C)$ klastrově rovinný, pak podle lemmatu \ref{zak_minor} neobsahuje $C_6^Z$ jako minor, neboť klastrový minor klastrově rovinného grafu je klastrově rovinný (viz důsledek \ref{důsledek}).
@@ -319,6 +327,7 @@ Minimálních zakázaných minorů pro cesty s klastry velikosti 2 je konečně 
 Mějme klastrový graf $(G,\mathcal C)$, kde $G$ je cesta. Vezměme saturátor $S$ a zkoumejme graf $G \cup S$. V tomto grafu mají vrcholy stupeň nejvýše 3. Tudíž zde nemůže být dělení $K_5$, ale může být dělení $K_{3,3}$. (viz obrázek \ref{deleni}) Jako minor zde můžou být obě možnosti bránící rovinnosti. Využíváme zde, že $(G, \mathcal C)$ je klastrově rovinný $\iff G \cup S$ rovinný. 
 
 \begin{figure}
+\centering
 \begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=1em,inner sep=3pt]}]
 
     \node[node] (1) at (0,0) {};
@@ -343,6 +352,7 @@ Mějme klastrový graf $(G,\mathcal C)$, kde $G$ je cesta. Vezměme saturátor $
 Stačí se ptát, jak vypadají spojnice v dělení $K_{3,3}$ a jak je můžeme zredukovat pomocí minorových operací. Pomocí minorových operací dosáhneme nejprve, že se zbavíme všeho nepotřebného, tedy vrcholů, hran a klastrů (resp. saturovaných hran) nepodílejících se na dělění $K_{3,3}$. Dále si spojnice zjednodušíme do podoby takové, že to jsou cesty, kde se střídájí hrany a klastry. Pokud totiž máme na spojnici více hran za sebou, tak pomocí kontrakcí se zbavíme nadbytečných hran. Nyní tvrdíme, že spojnice dokážeme zredukovat pomocí minorových operací do jednoho z následujících 4 typů: \\ 1) jedna hrana \\ 2) jeden klastr \\ 3) klastr a hrana \\ 4) hrana, klastr a hrana
 
 \begin{figure}[H]
+\centering
 \begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=1em,inner sep=3pt]}]
 
     \node[node] (1) at (0,0) {};
@@ -368,10 +378,11 @@ Stačí se ptát, jak vypadají spojnice v dělení $K_{3,3}$ a jak je můžeme 
 \caption{Typy spojnic v dělení $K_{3,3}$. Plná čára představuje hranu, čárkovaná znamená klastr.}
 \end{figure}
 
-Toho dosáhneme následovně. Pokud máme na spojnici následující situaci, že máme klastr $K_1=\{x,y\}$, hranu $e=\{y,z\}$ a klastr $K_2=\{z,w\}$ za sebou viz obrázek \ref{situace}, tak sjednotíme klastry $K_1$ a $K_2$. Ty spojuje právě jedna hrana, takže sjednocení můžeme provést bez problémů. Nyní jen smažeme vrcholy $y$ a $z$  a zbyde nám jen klastr $\{x,w\}$. Opakováním tohoto postupu každou spojnici zredukujeme na jeden ze čtyř výše uvedených typů.  Grafů, jenž jsou dělením $K_{3,3}$ a mají tyto typy spojnic, je konečně mnoho
+Toho dosáhneme následovně. Pokud máme na spojnici následující situaci, že máme klastr $K_1=\{x,y\}$, hranu $e=\{y,z\}$ a klastr $K_2=\{z,w\}$ za sebou viz obrázek \ref{situace}, tak sjednotíme klastry $K_1$ a $K_2$. Ty spojuje právě jedna hrana, takže sjednocení můžeme provést bez problémů. Nyní jen smažeme vrcholy $y$ a $z$  a zbyde nám jen klastr $\{x,w\}$. Opakováním tohoto postupu každou spojnici zredukujeme na jeden ze čtyř výše uvedených typů.  Grafů, jenž jsou dělením $K_{3,3}$ a mají tyto typy spojnic, je konečně mnoho.
 \end{proof}
 
 \begin{figure}[H]
+\centering
 \begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=1em,inner sep=3pt]}]
 
     \node[node] (1) at (0,0) {x};
@@ -383,7 +394,39 @@ Toho dosáhneme následovně. Pokud máme na spojnici následující situaci, ž
     \draw[dashed] (1) -- (2);
     \draw[dashed] (3) -- (4);
 \end{tikzpicture}
-\caption{Hledaná struktura, která jde zjednodušit pomocí minorových operací}
+\caption{Hledaná struktura, která jde zjednodušit pomocí minorových operací.}
 \label{situace}
 \end{figure}
+
+\section{Vztah klastrových kružnic a klastrových cest}
+
+Na závěr kapitoly ukážeme, že klastrové kružnice jsou speciálním případem cest. V této části nemáme omezení pro klastrovou hierarchii. V teorii grafů je tento výsledek trochu protiintuitivní, neboť obvykle grafové problémy jsou snadnější pro cesty než pro kružnice. 
+
+Napřed ale ještě potřebuje definovat jednu operaci s klastrovými grafy.
+
+\begin{defn}Mějme klastrový graf $(G, \mathcal C)$, kde $G=(V,E)$, a hranu $e=\{x,y\}$. \textit{Dělením hrany $e$} označujeme operaci, kdy z $G$ odebereme $e$ a nahradíme ji dvěma hranami $e'=\{x,w\}, e''=\{w,y\}$, kde $w$ je nový vrchol. Obdržíme tedy klastrový graf $(G', \mathcal C')$, kde $G'=(V \cup \{w\},(E \setminus \{e\}) \cup \{e',e''\})$. $\mathcal C'$ obdržíme z $\mathcal C$ následovně:
+
+Pokud $x$ a $y$ patřili do stejný klastrů, tak $w$ patří do těch samých. Jinak pokud $e$ vedla mezi dvěma klastry $K_1$ a $K_2$, kde jeden je potomkem druhého (ne nutně přímým), tak $w$ zařadím do jednoho z klastrů (a stejně tak přidán i výše v klastrové hierarchii) mezi $K_1$ a $K_2$ včetně. Posledním případem je, když $e$ vede mezi dvěma disjuktními klastry $K_1$ a $K_2$ (jejich společného předka označme $K_{1,2}$, v tom případě můžeme $w$ přídat do klastru (a přidat i výše jako v minulém případě), buď mezi $K_1$ a $K_{1,2}$ včetně, nebo  mezi $K_2$ a $K_{1,2}$ včetně.
+\end{defn}
+
+Takto definované dělení zachovává klastrovou rovinnost
+
+\begin{lemma}
+Pokud $(G, \mathcal C)$ vznikne z $(G', \mathcal C')$ operací dělení hrany a $(G', \mathcal C')$ je klastrově rovinný, potom i $(G, \mathcal C)$ je klastrově rovinný.
+\end{lemma}
+\begin{proof}
+Vezměme klastrové nakreslení $(G', \mathcal C')$. Vrchol $w$ vzniklý dělením hrany $e$ jednoduše dokreslíme na její nakreslení tam podle toho, do jakých klastrů jsme jej zařadili. Podle toho, kam jsme podle definice vrchol $w$ mohli přiřadit, jsme obdrželi klastrové nakreslení $(G, \mathcal C)$.
+\end{proof}
+
+Pro násleující větu předpokládejme, že každý vrchol tvoří jednovrcholový klastr a že máme tež klastr obsahující všechny vrcholy. To nám umožňuje, že množina všech vrcholu je rozdělena aspoň do dvou maximální podklastrů.
+
+\begin{theorem}
+Mějme klastrový graf $(G, \mathcal C)$, kde $G$ je kružnice, pak existuje klastrový $(G', \mathcal C')$ , kde $G'$ je cesta a takový, že $(G, \mathcal C)$ je klastrovým minorem $(G', \mathcal C')$. Navíc $(G, \mathcal C)$ je klastrově rovinný $\iff$ $(G', \mathcal C')$ je klastrově rovinný.
+\end{theorem}
+\begin{proof}
+Vezměme si dva maximální podklastry klastru obsahujícího všechny vrcholy (značme jej $K$) takové, že mezi nimi vede hrana (takový existujou, protože G je souvislý), označme ji $e$. Tuto hranu dvakrát podrozdělíme a vzniklé vrcholy $w, w'$ přiřadíme do $K$. Hranu spojující $w$ a $w'$ můžeme nahradit klastrem velikosti 2, neboť $w$ a $w'$ jsou obsažený ve stejných klastrech. Tento výsledný klastrový graf je hledaným $(G', \mathcal C')$, neboť $G'$ je cesta a $(G, \mathcal C)$ je klastrovým minorem $(G', \mathcal C')$ (provedou se inverzní operace, tedy nahrazení klastru hranou, kontrakce, přiřazení vrcholu do klastru a opět kontrakce).
+
+Jelikož všechny použité operace zachovávají klastrovou rovinnost, tak máme relativně zdarma, že $(G, \mathcal C)$ je klastrově rovinný právě tehdy, když $(G', \mathcal C')$ je klastrově rovinný.
+\end{proof}
+
 \end{document}

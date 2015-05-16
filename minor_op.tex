@@ -22,11 +22,11 @@
 
 \chapter{Minorové operace}
 
-V této kapitole zavedeme operace s klastrovým grafem, které zachovávají klastrovou rovinnost. V závěru kapitoly zavedeme pojem klastrového minoru jakožto hlavní pojem této kapitoly, jenž v následující kapitole použijeme pro charakterizaci zakázaných minorů omezených problémů klastrové rovinnosti.
+V této kapitole zavedeme operace s klastrovým grafem, které zachovávají klastrovou rovinnost. V závěru kapitoly zavedeme pojem klastrového minoru, jakožto hlavní pojem této kapitoly, jenž v následující kapitole použijeme pro charakterizaci zakázaných minorů omezených problémů klastrové rovinnosti.
 
 \begin{defn} (minorové operace) Mějme klastrový graf $(G, \mathcal C)$. Minorové operace na klastrových grafech jsou následující:
 
-(Pozn.: Pokud se neřekne jinak, operace se smí provést v nakreslené i nenakreslené verzi)
+(Pozn.: Pokud se neřekne jinak, operace se smí provést v nakreslené~i~nenakreslené verzi)
 
 \textit{Odebráním vrcholu $v$} z klastrového grafu $(G, \mathcal C)$ vznikne klastrový graf  $(G', \mathcal C')$, kde  $G' = (V \setminus \{v\}, E \setminus \{f |$ hrana $f$ obsahovala vrchol $v\})$ a $\mathcal C'$ je klastrová hierarchie, kde se z klastrů odebere vrchol $v$, pokud v nich byl.
 
@@ -34,7 +34,7 @@ V této kapitole zavedeme operace s klastrovým grafem, které zachovávají kla
 
 \textit{Odebráním klastru $K$} z klastrového grafu $(G, \mathcal C)$ vznikne klastrový graf  $(G, \mathcal C')$, kde $\mathcal C' = \mathcal C \setminus K$.
 
-\textit{Kontrakcí hrany $e=\{x,y\}$} z klastrového grafu $(G, \mathcal C)$ vznikne klastrový graf  $(G', \mathcal C')$, kde $G'$ je graf, který obdržíme kontrakcí hrany $e$ a $\mathcal C'$ získáme nahrazením vrcholů $x$ a $y$ ve všech klastrech, kde byli, vrcholem vzniklým kontrakcí. Kontrakci můžeme provést za předpokladu, že koncové vrcholy $x, y$ leží ve stejných klastrech.
+\textit{Kontrakcí hrany $e=\{x,y\}$} z klastrového grafu $(G, \mathcal C)$ vznikne klastrový graf  $(G', \mathcal C')$, kde $G'$ je graf, který obdržíme kontrakcí hrany $e$ a $\mathcal C'$ získáme nahrazením vrcholů $x$ a $y$ ve všech klastrech, kde byly, vrcholem vzniklým kontrakcí. Kontrakci můžeme provést za předpokladu, že koncové vrcholy $x, y$ leží ve stejných klastrech.
 
 \textit{Nahrazením klastru $K=\{x,y\}$ o velikosti 2 hranou $e$} z klastrového grafu klastrového grafu $(G, \mathcal C)$ vznikne klastrový graf  $(G', \mathcal C')$, kde $G'=(V,E \cup e)$ a $\mathcal C'= C \setminus K$. Předpokládáme, že vrcholy $x, y$ nejsou spojeny hranou, neboť v tom případě tato operace není potřebná. U nakreslené verze navíc předpokládáme, že $e$ má jednoznačně dané kombinatorické nakreslení.
 
@@ -43,18 +43,18 @@ V této kapitole zavedeme operace s klastrovým grafem, které zachovávají kla
 \textit{Sjednocení disjuktních klastrů $K_1$ a $K_2$} z klastrového grafu $(G, \mathcal C)$ vznikne klastrový graf  $(G, \mathcal C')$, kde $C'  := (C\setminus \{K_1,K_2\}) \cup \{K_1 \cup K_2\}$. Sjednocení klastrů můžeme provést za předpokladů, že $K_1, K_2$ jsou dva minimální klastry (nemají podklastry) se společným rodičem, $K_1 \cup K_2$ neindukuje kružnici s vrcholem mimo $K_1 \cup K_2$ uvnitř. Jinými slovy $K_1 \cup K_2$ nemá díru v $G$ (v nakreslené verzi). V nenakreslené verzi je podmínkou, že existuje nakreslení $\rho$ grafu $G$ takové, že $K_1 \cup K_2$ nemá díru v $\rho$. Posledním předpokladem je, že existuje hrana spojující $K_1$ s $K_2$.
 \end{defn}
 
-Název minorové operace je užit proto, že každá operace zjednoduše daný vstupní klastrový graf. U sjednocení klastrů v nenakresleném klastrovém grafu je obtížné říci, kdy potřebné nakreslení existuje, to činí operaci méně použitelnou.
-Nyní vyzkoumáme dopad minorových operací na klastrový graf, konkrétně dopad na existenci klastrového nakreslení.
+Název minorové operace je užit proto, že každá operace zjednodušuje daný vstupní klastrový graf. U sjednocení klastrů v nenakresleném klastrovém grafu je obtížné říci, kdy potřebné nakreslení existuje, to činí operaci méně použitelnou.
+Nyní vyzkoumáme dopad minorových operací na klastrový graf, konkrétně dopad na existenci klastrového nakreslení. Kromě nahrazení klastru hranou můžeme uvážit i nahrazení hrany klastrem velikosti 2. To můžeme provést v případě, že konce hrany patří do stejných klastrů.
 
-\begin{tvr} Nechť $(G', \mathcal C')$ vznilkne z $(G, \mathcal C)$ minorovou operací. Potom pokud $(G, \mathcal C)$ je klastrově rovinný, tak $(G', \mathcal C')$ je klastrově rovinný.
+\begin{tvr} Nechť $(G', \mathcal C')$ vznikne z $(G, \mathcal C)$ minorovou operací. Potom pokud $(G, \mathcal C)$ je klastrově rovinný, tak $(G', \mathcal C')$ je klastrově rovinný.
 \label{min_op_zach_kl_rov}
 \end{tvr}
 \begin{proof}
 
 Mějme klastrový graf $(G, \mathcal C)$ a jeho klastrové nakreslení $\rho$.
 
-Odebrání vrcholu, hrany, klastru zachovává klastrovou rovinnost:\\
-Mějme dáno klastrové nakreslení. Odebrání hrany zapříčiní jedině to, že se nemusí v daném nakreslení hrana kreslit. Podobně pro odebraný vrchol, kdy se odebereu hrany vedoucí do něj. Odebraný klastr se též prostě nenakreslí.
+Odebrání vrcholu, hrany či klastru zachovává klastrovou rovinnost:\\
+Mějme dáno klastrové nakreslení. Odebrání hrany zapříčiní jedině to, že se nemusí v daném nakreslení hrana kreslit. Podobně pro odebraný vrchol, kdy se odeberou hrany vedoucí do něj. Odebraný klastr se též prostě nenakreslí.
 
 Kontrakce hrany zachovává klastrovou rovinnost:\\
 Mějme dáno klastrové nakreslení. Kontrakce je jen vlastně smrštění hrany do jediného bodu, jenž zastupuje vrchol vzniklý kontrakcí.
@@ -62,21 +62,22 @@ Mějme dáno klastrové nakreslení. Kontrakce je jen vlastně smrštění hrany
 Nahrazení klastru $K=\{x,y\}$ hranou $e$ zachovává klastrovou rovinnost:\\
 Jelikož $(G, \mathcal C)$ je klastrově rovinný, tak máme saturátor $S$. Jelikož $K$ je podle předpokladu nesouvislý, tak po přidání saturátoru jsou vrcholy $x, y$ spojeny hranou. Tato hrana ze saturátoru spojující $x,y$ je hledanou hranou $e$. V nakreslené verzi je požadavek na jednoznačnost, protože by se jinak mohlo stát, že nahrazením klastru hranou vznikne díra.  
 
-Odebraní vrcholu z klastru zachovává klastrovou rovinnost:\\
+Odebrání vrcholu z klastru zachovává klastrovou rovinnost:\\
 Jednoduchý překreslovací argument, kdy podél hrany protáhneme hranici klastru až ji přetáhneme přes vyjímaný vrchol.
 
 Sjednocení klastrů zachovává klastrovou rovinnost:\\
 Nechť $S$ je minimální saturátor $(G,\mathcal C)$ takový, že $(G \cup S,\mathcal C)$ nemá díru. $S$ je saturátorem i pro klastrový graf $(G, \mathcal C')$, kde ale může být díra.
-Nechť $S'$ je  minimální saturátor $(G, \mathcal C')$ a $S' \subseteq S$. Tvrdíme, že $(G \cup S',\mathcal C')$ nemá díru. To dokážeme sporem.
+Nechť $S'$ je minimální saturátor $(G, \mathcal C')$ a $S' \subseteq S$. Tvrdíme, že $(G \cup S',\mathcal C')$ nemá díru. To dokážeme sporem.
 
 Nechť $D$ je díra. Ta musí být ve sjednocení klastrů $K_1$ a $K_2$, neboť kdyby byla jinde, bylo by to ve sporu s předpokladem, že $(G \cup S, \mathcal C)$ nemá díru.
 Díra $D$ má neprázdný průnik se saturátorem $S'$. Kdyby průnik byl prázdný, znamenalo by to, že příslušná díra byla v původním klastrovém grafu. Označme tuto hranu $e = \{x,y\}$, kde $x$ a $y$ jsou její koncové vrcholy.
 Jako $S''$ označme $S' \setminus e$. Množina $S''$ je saturátorem, protože každý klastr $K \in C$ obsahující vrcholy  $x$ a $y$ obsahuje i cestu $D \setminus \{e\}$. Dostali jsme tedy spor s minimalitou $S'$. $S'$ tedy neobsahuje díry.
 \end{proof}
 
-Sjednocení klastrů má dost přepodkladů, a proto uvedeme, proč jsou tyto předpoklady nutné. Předpoklad o společném rodiči je z důvodu zachování klastrové hierarchie. Následující příklad klastrového grafu (obrázek \ref{podklastr}) ukazuje, proč je nutný předpoklad o tom, že sjednocované klastry nesmějí mít podklastry.
+Sjednocení klastrů má dost přepokladů, a proto uvedeme, proč jsou tyto předpoklady nutné. Předpoklad o společném rodiči je z důvodu zachování klastrové hierarchie. Klastrový graf z obrázku \ref{podklastr} ukazuje, proč je nutný předpoklad o tom, že sjednocované klastry nesmějí mít podklastry.
 
 \begin{figure}[H]
+\centering
 \begin{tikzpicture}[node/.style={circle,fill=black!20,draw,minimum size=1em,inner sep=3pt]}]
   
   \node[node] (1) at  (0,0) {};
@@ -127,7 +128,7 @@ $\mathcal C' = (\mathcal C \setminus \{K\}) \cup \{ K \cup \{v\} \}$
 Potom $(G, \mathcal C)$ je klastrově rovinný $\implies (G, \mathcal C')$ je klastrově rovinný.
 \end{tvr}
 \begin{proof}
-Jednoduše, budeme vrchol vydávat za jednovrcholový klastr. Zbytek plyne z toho, že sjednocení zachovává klastrovou rovinnost, jelikož jsou splněny všechny předpoklady.
+Jednoduše budeme vrchol vydávat za jednovrcholový klastr. Zbytek plyne z toho, že sjednocení zachovává klastrovou rovinnost, jelikož jsou splněny všechny předpoklady.
 \end{proof}
 
 Podobně pro nenakreslenou verzi. Druhý případ je, když klastry spojuje právě jedna hrana. Tento případ nám dává příklad, kdy můžeme provést sjednocení klastrů i pro nenakreslené klastrové grafy.
@@ -138,7 +139,7 @@ Mějme klastrový graf  $(G, \mathcal C)$ a dva disjunktní klastry $K_1$ a $K_2
 Pro použití výsledku o sjednocení klastrů nám stačí ukázat, že $K_1 \cup K_2$ neobsahuje díru. Protože klastry $K_1$ a $K_2$ spojuje právě jedna hrana, tak jediné kružnice ve sjednocení jsou buď $K_1$ nebo v $K_2$. Podle předpokladu, že $(G, \mathcal C)$ je klastrově rovinný, tak $K_1$ ani $K_2$ neobsahují díru. Podle tvrzení \ref{min_op_zach_kl_rov} je $\implies (G, \mathcal C')$ klastrově rovinný.
 \end{proof}
 
-Vyzbrojeni minorovými operacemi můžeme definovat pojem klastrového minoru
+Vyzbrojeni minorovými operacemi můžeme definovat pojem klastrového minoru.
 
 \begin{defn}
 Mějme klastrový graf $(G,\mathcal C)$. Klastrový graf $(G',\mathcal C')$ je klastrovým minorem, pokud jej lze získat konečnou posloupností minorových operací z klastrového grafu $(G,\mathcal C)$.
