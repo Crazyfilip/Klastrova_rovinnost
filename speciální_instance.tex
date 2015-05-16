@@ -400,16 +400,16 @@ Toho dosáhneme následovně. Pokud máme na spojnici následující situaci, ž
 
 \section{Vztah klastrových kružnic a klastrových cest}
 
-Na závěr kapitoly ukážeme, že klastrové kružnice jsou speciálním případem cest. V této části nemáme omezení pro klastrovou hierarchii. V teorii grafů je tento výsledek trochu protiintuitivní, neboť obvykle grafové problémy jsou snadnější pro cesty než pro kružnice. 
+Na závěr kapitoly ukážeme, že klastrová rovinnost pro klastrové kružnice lze převést na ekvivalentní problém klastrové rovinnosti pro klastrové cesty, tedy kružnice jsou v tomto smyslu jednodušší. V této části nemáme omezení pro klastrovou hierarchii. V teorii grafů je tento výsledek trochu protiintuitivní, neboť obvykle grafové problémy jsou snadnější pro cesty než pro kružnice. 
 
 Napřed ale ještě potřebuje definovat jednu operaci s klastrovými grafy.
 
-\begin{defn}Mějme klastrový graf $(G, \mathcal C)$, kde $G=(V,E)$, a hranu $e=\{x,y\}$. \textit{Dělením hrany $e$} označujeme operaci, kdy z $G$ odebereme $e$ a nahradíme ji dvěma hranami $e'=\{x,w\}, e''=\{w,y\}$, kde $w$ je nový vrchol. Obdržíme tedy klastrový graf $(G', \mathcal C')$, kde $G'=(V \cup \{w\},(E \setminus \{e\}) \cup \{e',e''\})$. $\mathcal C'$ obdržíme z $\mathcal C$ následovně:
+\begin{defn}Mějme klastrový graf $(G, \mathcal C)$, kde $G=(V,E)$, a hranu $e=\{x,y\}$. \textit{Dělením hrany $e$} označujeme operaci, kdy z $G$ odebereme $e$ a nahradíme ji dvěma hranami $e'=\{x,w\}, e''=\{w,y\}$, kde $w$ je nový vrchol. Obdržíme tedy klastrový graf $(G', \mathcal C')$, kde $G'=(V \cup \{w\},(E \setminus \{e\}) \cup \{e',e''\})$. $\mathcal C'$ obdržíme z $\mathcal C$ následovně: 
 
-Pokud $x$ a $y$ patřili do stejný klastrů, tak $w$ patří do těch samých. Jinak pokud $e$ vedla mezi dvěma klastry $K_1$ a $K_2$, kde jeden je potomkem druhého (ne nutně přímým), tak $w$ zařadím do jednoho z klastrů (a stejně tak přidán i výše v klastrové hierarchii) mezi $K_1$ a $K_2$ včetně. Posledním případem je, když $e$ vede mezi dvěma disjuktními klastry $K_1$ a $K_2$ (jejich společného předka označme $K_{1,2}$, v tom případě můžeme $w$ přídat do klastru (a přidat i výše jako v minulém případě), buď mezi $K_1$ a $K_{1,2}$ včetně, nebo  mezi $K_2$ a $K_{1,2}$ včetně.
+Označme $L$ nejmenší klastr, kam přijde $w$. Jestliže $x$ a $y$ patřili do stejných klastrů (nejmenší označme $K$), tak $L=K$. Pokud však $e$ vedla mezi dvěma klastry $K_1$ a $K_2$, tak v případě, že jeden z klastrů je potomkem druhého (ne nutně přímým), tak pro $L$ platí $K_1 \subseteq L \subseteq K_2$, a v případě, že klastry $K_1$ a $K_2$ jsou disjuktní, tak pro $L$ platí, buď $K_1 \subseteq L \subseteq K_{1,2}$, nebo platí $K_2 \subseteq L \subseteq K_{1,2}$, kde $K_{1,2}$ je nejmenší klastr obsahující $K_1$ a $K_2$.
 \end{defn}
 
-Takto definované dělení zachovává klastrovou rovinnost
+Takto definované dělení zachovává klastrovou rovinnost.
 
 \begin{lemma}
 Pokud $(G, \mathcal C)$ vznikne z $(G', \mathcal C')$ operací dělení hrany a $(G', \mathcal C')$ je klastrově rovinný, potom i $(G, \mathcal C)$ je klastrově rovinný.
@@ -418,13 +418,13 @@ Pokud $(G, \mathcal C)$ vznikne z $(G', \mathcal C')$ operací dělení hrany a 
 Vezměme klastrové nakreslení $(G', \mathcal C')$. Vrchol $w$ vzniklý dělením hrany $e$ jednoduše dokreslíme na její nakreslení tam podle toho, do jakých klastrů jsme jej zařadili. Podle toho, kam jsme podle definice vrchol $w$ mohli přiřadit, jsme obdrželi klastrové nakreslení $(G, \mathcal C)$.
 \end{proof}
 
-Pro násleující větu předpokládejme, že každý vrchol tvoří jednovrcholový klastr a že máme tež klastr obsahující všechny vrcholy. To nám umožňuje, že množina všech vrcholu je rozdělena aspoň do dvou maximální podklastrů.
+Pro následující větu předpokládejme, že každý vrchol tvoří jednovrcholový klastr a že máme tež klastr obsahující všechny vrcholy. To nám zajišťuje, že množina všech vrcholů je rozdělena aspoň do dvou maximální podklastrů.
 
 \begin{theorem}
 Mějme klastrový graf $(G, \mathcal C)$, kde $G$ je kružnice, pak existuje klastrový $(G', \mathcal C')$ , kde $G'$ je cesta a takový, že $(G, \mathcal C)$ je klastrovým minorem $(G', \mathcal C')$. Navíc $(G, \mathcal C)$ je klastrově rovinný $\iff$ $(G', \mathcal C')$ je klastrově rovinný.
 \end{theorem}
 \begin{proof}
-Vezměme si dva maximální podklastry klastru obsahujícího všechny vrcholy (značme jej $K$) takové, že mezi nimi vede hrana (takový existujou, protože G je souvislý), označme ji $e$. Tuto hranu dvakrát podrozdělíme a vzniklé vrcholy $w, w'$ přiřadíme do $K$. Hranu spojující $w$ a $w'$ můžeme nahradit klastrem velikosti 2, neboť $w$ a $w'$ jsou obsažený ve stejných klastrech. Tento výsledný klastrový graf je hledaným $(G', \mathcal C')$, neboť $G'$ je cesta a $(G, \mathcal C)$ je klastrovým minorem $(G', \mathcal C')$ (provedou se inverzní operace, tedy nahrazení klastru hranou, kontrakce, přiřazení vrcholu do klastru a opět kontrakce).
+Vezměme si dva maximální podklastry klastru obsahujícího všechny vrcholy (značme jej $K$) takové, že mezi nimi vede hrana (takové existují, protože G je souvislý), označme ji $e$. Tuto hranu dvakrát podrozdělíme a vzniklé vrcholy $w, w'$ přiřadíme do $K$. Hranu spojující $w$ a $w'$ můžeme nahradit klastrem velikosti 2, neboť $w$ a $w'$ jsou obsažené ve stejných klastrech. Tento výsledný klastrový graf je hledaným $(G', \mathcal C')$, neboť $G'$ je cesta a $(G, \mathcal C)$ je klastrovým minorem $(G', \mathcal C')$ (provedou se inverzní operace, tedy nahrazení klastru hranou, kontrakce, přiřazení vrcholu do klastru a opět kontrakce).
 
 Jelikož všechny použité operace zachovávají klastrovou rovinnost, tak máme relativně zdarma, že $(G, \mathcal C)$ je klastrově rovinný právě tehdy, když $(G', \mathcal C')$ je klastrově rovinný.
 \end{proof}
