@@ -19,21 +19,21 @@
 
 \chapter{Úvod}
 
-Při vizualizaci různých systémů, kde máme nějaké objekty a spoje mezi nimi, jako jsou například sítě, grafy, apod., můžeme mít na zobrazení různé požadavky. Častým požadavkem je, aby se spoje nekřížili. Další možným požadavkem je, že objekty mají být zobrazeny \uv{blízko} sebe. Velmi podobným požadavkem se zabývá klastrová rovinnost, kde máme objekty seskupené do skupin nazývané klastry a požadavkem na vizualizaci je, aby každou skupinu bylo možno ohraničit do vymezeného regionu.
+Při vizualizaci různých systémů, kde máme nějaké objekty a spoje mezi nimi, jako jsou například sítě, grafy, apod., můžeme mít na zobrazení různé požadavky. Častým požadavkem je, aby se spoje nekřížily. Další možným požadavkem je, že objekty mají být zobrazeny \uv{blízko} sebe. Velmi podobným požadavkem se zabývá klastrová rovinnost, kde máme objekty seskupené do skupin nazývané klastry a požadavkem na vizualizaci je, aby každou skupinu bylo možno ohraničit do vymezeného regionu.
 
 Problém existence rovinného klastrového nakreslení grafu (dále jen klastrová rovinnost) je jedním možným zobecněním klasické grafové rovinnosti pro případ, kdy kromě vrcholů a hran máme hierarchii skupin vrcholů. Skupinu vrcholů nazýváme klastrem. Pro klastrovou rovinnost není znám polynomiální algoritmus, a není známo, zda je tento problém NP-úplný. 
 
 \begin{defn}
-Mějme graf $G=(V,E)$. Pod \textit{klastrem} $C$ budeme uvažovat podmnožinu vrcholů  $C \subseteq V$. \\
-\textit{Klastrovou hierarchií} jest množina klastrů, kde pro každé dva klastry $C_1$~a~$C_2$ platí následující
+Mějme graf $G=(V,E)$. Pod \textit{klastrem} $K$ budeme uvažovat podmnožinu vrcholů  $K \subseteq V$. \\
+\textit{Klastrovou hierarchií} jest množina klastrů, kde pro každé dva klastry $K_1$~a~$K_2$ platí následující
 \begin{itemize}
-\item buď $C_1 \cap C_2 = \emptyset$
-\item nebo $C_1 \subset C_2$, případně nebo $C_2 \subset C_1$
+\item buď $K_1 \cap K_2 = \emptyset$
+\item nebo $K_1 \subset K_2$, případně nebo $K_2 \subset K_1$
 \end{itemize}
 \textit{Klastrový graf} je dvojice $(G,\mathcal C)$, kde $G$ je graf a $\mathcal C$ je klastrová hierarchie vrcholů G.
 \end{defn}
 
-Formálně se můžeme dívat na klastrovou hierarchii jako podmnožinu $\mathcal P (V)$. To může vést k tomu, že bychom si mohli myslet, že klastrů může být velmi mnoho vzhledem k velikosti původního grafu. V kapitole složitost ukážeme, že počet klastrů je lineární vzhledem k počtu vrcholů grafu $G$. V některých situacích se hodí předpokládat, že množina všech vrcholů vždy tvoří klastr a též jednotlivé vrcholy tvoří klastry. Například se tento předpoklad  hodí v důkazu o počtu klastrů.
+Formálně se můžeme dívat na klastrovou hierarchii jako podmnožinu $\mathcal P (V)$. To může vést k tomu, že bychom si mohli myslet, že klastrů může být velmi mnoho vzhledem k velikosti původního grafu. V kapitole složitost (kap. \ref{slozitost}) ukážeme, že počet klastrů je lineární vzhledem k počtu vrcholů grafu $G$. V některých situacích se hodí předpokládat, že množina všech vrcholů vždy tvoří klastr a též jednotlivé vrcholy tvoří klastry. Například se tento předpoklad  hodí v důkazu o počtu klastrů.
 
 \begin{defn}
 Pod \textit{klastrovým nakreslením} rozumíme to, že vrcholy a hrany nakreslíme do roviny jako u rovinného nakreslení a navíc doplníme nakreslení klastrů.\\ 
@@ -83,7 +83,7 @@ Mejme nakreslení grafu $G$, označme jej $\rho$. \textit{Nakreslený saturátor
 Mějme klastrový graf $(G,\mathcal C)$.V nakreslení $\rho$ grafu $G$ rozumíme \textit{dírou} kružnici $C$ v grafu $G$, jejíž vrcholy náleží klastru $K$ takovou, že v nakreslení $\rho$  je uvnitř nakreslení $C$ vrchol nepatřící do klastru $K$.
 \end{defn}
 
-Pokud má nakreslení $\rho$ grafu $G$ díru, tak jej nelze rozšířit na klastrové nakreslení, proto je zde uvádíme.
+Pokud má nakreslení $\rho$ grafu $G$ díru, tak jej nelze rozšířit na klastrové nakreslení, proto jej zde uvádíme.
 Větu o kombinatorickém pohledu na klastrovou rovinnost uvedeme zvlášť pro nakreslenou verzi a zvlášť pro nenakreslenou verzi.
 
 \begin{theorem}[Di Battista, Frati \cite{DiBattistaFrati07}]

@@ -63,12 +63,12 @@ U kružnice můžou saturátorové hrany vést pouze vnitřkem nebo vnějškem (
  Klastry $\{x_1, x_2\}$ a $\{y_1, y_2\}$ mají spolu \textit{konflikt}, pokud se na kružnici vyskytují v následujícím pořádí $x_1 , ..., y_1, ..., x_2, ..., y_2, ...$. Graf konfliktů je reprezentací konfliktů saturátorových hran, kde vrcholy jsou klastry a hrany představují konfliktní klastry. Graf konfliktů pro klastrový graf $(G,\mathcal C)$ budeme značit $GK_{(G,\mathcal C)}$
 \end{defn}
 
-Získáme ihned kritérium, kdy kružnice s klastry velikosti 2 je klastrově rovinný graf. Je to právě tehdy, když graf konfliktů je bipartitní. Dokážeme si to jako lemma.
+Získáváme ihned kritérium, kdy kružnice s klastry velikosti 2 je klastrově rovinný graf. Je to právě tehdy, když graf konfliktů je bipartitní. Dokážeme si to jako lemma.
 
 \begin{lemma}\label{lemma_ekv_graf_konf_kl_rov}Kružnice s klastry velikosti 2 je klastrově rovinná právě tehdy, když graf konfliktů je bipartitní.
 \end{lemma}
 \begin{proof}
-Klastr, jenž je tvořen sousedními vrcholy, zjevně nemůže být podle definice s jiným klastrem v konfliktu. Vrchol příslušného klastru v grafu konfliktů je izolovaný. Stačí tedy uvažovat, že vrcholy v klastru nejsou sousedními.
+Klastr, jenž je tvořen sousedními vrcholy, zjevně nemůže být s jiným klastrem v konfliktu podle definice. Vrchol příslušného klastru v grafu konfliktů je izolovaný. Stačí tedy uvažovat, že vrcholy v klastru nejsou sousedními.
 
 $\implies$
 
@@ -378,7 +378,7 @@ Stačí se ptát, jak vypadají spojnice v dělení $K_{3,3}$ a jak je můžeme 
 \caption{Typy spojnic v dělení $K_{3,3}$. Plná čára představuje hranu, čárkovaná znamená klastr.}
 \end{figure}
 
-Toho dosáhneme následovně. Pokud máme na spojnici následující situaci, že máme klastr $K_1=\{x,y\}$, hranu $e=\{y,z\}$ a klastr $K_2=\{z,w\}$ za sebou viz obrázek \ref{situace}, tak sjednotíme klastry $K_1$ a $K_2$. Ty spojuje právě jedna hrana, takže sjednocení můžeme provést bez problémů. Nyní jen smažeme vrcholy $y$ a $z$  a zbyde nám jen klastr $\{x,w\}$. Opakováním tohoto postupu každou spojnici zredukujeme na jeden ze čtyř výše uvedených typů.  Grafů, jenž jsou dělením $K_{3,3}$ a mají tyto typy spojnic, je konečně mnoho.
+Toho dosáhneme následovně. Pokud máme na spojnici následující situaci, že máme klastr $K_1=\{x,y\}$, hranu $e=\{y,z\}$ a klastr $K_2=\{z,w\}$ za sebou (viz obrázek \ref{situace}), tak sjednotíme klastry $K_1$ a $K_2$. Ty spojuje právě jedna hrana, takže sjednocení můžeme provést bez problémů. Nyní jen smažeme vrcholy $y$ a $z$  a zbyde nám jen klastr $\{x,w\}$. Opakováním tohoto postupu každou spojnici zredukujeme na jeden ze čtyř výše uvedených typů.  Grafů, jenž jsou dělením $K_{3,3}$ a mají tyto typy spojnic, je konečně mnoho.
 \end{proof}
 
 \begin{figure}[H]
@@ -404,7 +404,7 @@ Na závěr kapitoly ukážeme, že klastrová rovinnost pro klastrové kružnice
 
 Napřed ale ještě potřebuje definovat jednu operaci s klastrovými grafy.
 
-\begin{defn}Mějme klastrový graf $(G, \mathcal C)$, kde $G=(V,E)$, a hranu $e=\{x,y\}$. \textit{Dělením hrany $e$} označujeme operaci, kdy z $G$ odebereme $e$ a nahradíme ji dvěma hranami $e'=\{x,w\}, e''=\{w,y\}$, kde $w$ je nový vrchol. Obdržíme tedy klastrový graf $(G', \mathcal C')$, kde $G'=(V \cup \{w\},(E \setminus \{e\}) \cup \{e',e''\})$. $\mathcal C'$ obdržíme z $\mathcal C$ následovně: 
+\begin{defn}Mějme klastrový graf $(G, \mathcal C)$, kde $G=(V,E)$, a hranu $e=\{x,y\}$. \textit{Dělením hrany $e$} označujeme operaci, kdy z $G$ odebereme $e$ a nahradíme ji dvěma hranami $e'=\{x,w\}, e''=\{w,y\}$, kde $w$ je nový vrchol. Obdržíme tedy klastrový graf $(G', \mathcal C')$, kde $G'=(V \cup \{w\},(E \setminus \{e\}) \cup \{e',e''\})$. $\mathcal C'$ obdržíme z $\mathcal C$ následovně:
 
 Označme $L$ nejmenší klastr, kam přijde $w$. Jestliže $x$ a $y$ patřili do stejných klastrů (nejmenší označme $K$), tak $L=K$. Pokud však $e$ vedla mezi dvěma klastry $K_1$ a $K_2$, tak v případě, že jeden z klastrů je potomkem druhého (ne nutně přímým), tak pro $L$ platí $K_1 \subseteq L \subseteq K_2$, a v případě, že klastry $K_1$ a $K_2$ jsou disjuktní, tak pro $L$ platí, buď $K_1 \subseteq L \subseteq K_{1,2}$, nebo platí $K_2 \subseteq L \subseteq K_{1,2}$, kde $K_{1,2}$ je nejmenší klastr obsahující $K_1$ a $K_2$.
 \end{defn}

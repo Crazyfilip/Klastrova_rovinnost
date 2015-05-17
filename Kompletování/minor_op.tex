@@ -2,11 +2,11 @@
 
 V této kapitole zavedeme operace s klastrovým grafem, které zachovávají klastrovou rovinnost. V závěru kapitoly zavedeme pojem klastrového minoru, jakožto hlavní pojem této kapitoly, jenž v následující kapitole použijeme pro charakterizaci zakázaných minorů omezených problémů klastrové rovinnosti.
 
-\begin{defn} (minorové operace) Mějme klastrový graf $(G, \mathcal C)$. Minorové operace na klastrových grafech jsou následující:
+\begin{defn}Mějme klastrový graf $(G, \mathcal C)$. \textit{Minorové operace} na klastrových grafech jsou následující:
 
 (Pozn.: Pokud se neřekne jinak, operace se smí provést v nakreslené~i~nenakreslené verzi)
 
-\textit{Odebráním vrcholu $v$} z klastrového grafu $(G, \mathcal C)$ vznikne klastrový graf  $(G', \mathcal C')$, kde  $G' = (V \setminus \{v\}, E \setminus \{f |$ hrana $f$ obsahovala vrchol $v\})$ a $\mathcal C'$ je klastrová hierarchie, kde se z klastrů odebere vrchol $v$, pokud v nich byl.
+\textit{Odebráním vrcholu $v$} z klastrového grafu $(G, \mathcal C)$ vznikne klastrový graf  $(G', \mathcal C')$, kde  $G' = (V \setminus \{v\}, E \setminus \{f | \text{ hrana } f \text{ obsahovala vrchol } v\})$ a $\mathcal C'$ je klastrová hierarchie, kde se z klastrů odebere vrchol $v$, pokud v nich byl.
 
 \textit{Odebráním hrany $e$} z klastrového grafu $(G, \mathcal C)$ vznikne klastrový graf  $(G', \mathcal C)$, kde $G' =  (V,E \setminus \{e\})$.
 
@@ -21,8 +21,7 @@ V této kapitole zavedeme operace s klastrovým grafem, které zachovávají kla
 \textit{Sjednocení disjuktních klastrů $K_1$ a $K_2$} z klastrového grafu $(G, \mathcal C)$ vznikne klastrový graf  $(G, \mathcal C')$, kde $C'  := (C\setminus \{K_1,K_2\}) \cup \{K_1 \cup K_2\}$. Sjednocení klastrů můžeme provést za předpokladů, že $K_1, K_2$ jsou dva minimální klastry (nemají podklastry) se společným rodičem, $K_1 \cup K_2$ neindukuje kružnici s vrcholem mimo $K_1 \cup K_2$ uvnitř. Jinými slovy $K_1 \cup K_2$ nemá díru v $G$ (v nakreslené verzi). V nenakreslené verzi je podmínkou, že existuje nakreslení $\rho$ grafu $G$ takové, že $K_1 \cup K_2$ nemá díru v $\rho$. Posledním předpokladem je, že existuje hrana spojující $K_1$ s $K_2$.
 \end{defn}
 
-Název minorové operace je užit proto, že každá operace zjednodušuje daný vstupní klastrový graf. U sjednocení klastrů v nenakresleném klastrovém grafu je obtížné říci, kdy potřebné nakreslení existuje, to činí operaci méně použitelnou.
-Nyní vyzkoumáme dopad minorových operací na klastrový graf, konkrétně dopad na existenci klastrového nakreslení. Kromě nahrazení klastru hranou můžeme uvážit i nahrazení hrany klastrem velikosti 2. To můžeme provést v případě, že konce hrany patří do stejných klastrů.
+Název minorové operace je užit proto, že každá operace zjednodušuje daný vstupní klastrový graf. U sjednocení klastrů v nenakresleném klastrovém grafu je obtížné říci, kdy potřebné nakreslení existuje, to činí operaci méně použitelnou. Kromě nahrazení klastru hranou můžeme uvážit i nahrazení hrany klastrem velikosti 2. To můžeme provést v případě, že konce hrany patří do stejných klastrů. Nyní vyzkoumáme dopad minorových operací na klastrový graf, konkrétně dopad na existenci klastrového nakreslení. 
 
 \begin{tvr} Nechť $(G', \mathcal C')$ vznikne z $(G, \mathcal C)$ minorovou operací. Potom pokud $(G, \mathcal C)$ je klastrově rovinný, tak $(G', \mathcal C')$ je klastrově rovinný.
 \label{min_op_zach_kl_rov}
@@ -38,7 +37,7 @@ Kontrakce hrany zachovává klastrovou rovinnost:\\
 Mějme dáno klastrové nakreslení. Kontrakce je jen vlastně smrštění hrany do jediného bodu, jenž zastupuje vrchol vzniklý kontrakcí.
 
 Nahrazení klastru $K=\{x,y\}$ hranou $e$ zachovává klastrovou rovinnost:\\
-Jelikož $(G, \mathcal C)$ je klastrově rovinný, tak máme saturátor $S$. Jelikož $K$ je podle předpokladu nesouvislý, tak po přidání saturátoru jsou vrcholy $x, y$ spojeny hranou. Tato hrana ze saturátoru spojující $x,y$ je hledanou hranou $e$. V nakreslené verzi je požadavek na jednoznačnost, protože by se jinak mohlo stát, že nahrazením klastru hranou vznikne díra.  
+Jelikož $(G, \mathcal C)$ je klastrově rovinný, tak máme saturátor $S$. Jelikož $K$ je podle předpokladu nesouvislý, tak po přidání saturátoru jsou vrcholy $x, y$ spojeny hranou. Tato hrana ze saturátoru spojující $x,y$ je hledanou hranou $e$. V nakreslené verzi je požadavek na jednoznačnost z toho důvodu, že by se mohlo stát, že nahrazením klastru hranou vznikne díra.  
 
 Odebrání vrcholu z klastru zachovává klastrovou rovinnost:\\
 Jednoduchý překreslovací argument, kdy podél hrany protáhneme hranici klastru až ji přetáhneme přes vyjímaný vrchol.
@@ -120,7 +119,7 @@ Pro použití výsledku o sjednocení klastrů nám stačí ukázat, že $K_1 \c
 Vyzbrojeni minorovými operacemi můžeme definovat pojem klastrového minoru.
 
 \begin{defn}
-Mějme klastrový graf $(G,\mathcal C)$. Klastrový graf $(G',\mathcal C')$ je klastrovým minorem, pokud jej lze získat konečnou posloupností minorových operací z klastrového grafu $(G,\mathcal C)$.
+Mějme klastrový graf $(G,\mathcal C)$. Klastrový graf $(G',\mathcal C')$ je \textit{klastrovým minorem}, pokud jej lze získat konečnou posloupností minorových operací z klastrového grafu $(G,\mathcal C)$.
 \end{defn}
 
 \begin{dusl} Klastrový minor klastrově rovinného klastrového grafu je klastrově rovinný.
